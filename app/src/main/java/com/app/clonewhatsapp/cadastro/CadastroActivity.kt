@@ -3,25 +3,91 @@ package com.app.clonewhatsapp.cadastro
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.app.clonewhatsapp.R
+import android.text.TextUtils
+import android.view.View
+import android.widget.Toast
 import com.app.clonewhatsapp.databinding.ActivityCadastroBinding
 import com.app.clonewhatsapp.login.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+
 
 class CadastroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCadastroBinding
+    lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityCadastroBinding.inflate(layoutInflater)
+        val binding = ActivityCadastroBinding.inflate(layoutInflater)
         setContentView(binding.root)
         /*
         binding.textEntrarLogin.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
         }
-
          */
+        auth = FirebaseAuth.getInstance()
+
+        binding.buttonCadastrar.setOnClickListener {
+            when{
+                TextUtils.isEmpty(binding.editNome.text.toString().trim{it <= ' '}) ->{
+                    Toast.makeText(
+                        this@CadastroActivity,
+                        "Preencha o nome.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                TextUtils.isEmpty(binding.editEmail.text.toString().trim{it <= ' '}) ->{
+                    Toast.makeText(
+                        this@CadastroActivity,
+                        "Preencha o email.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                TextUtils.isEmpty(binding.editSenha.text.toString().trim{it <= ' '}) ->{
+                    Toast.makeText(
+                        this@CadastroActivity,
+                        "Preencha a senha.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {
+                    val nome: String = binding.editNome.text.toString().trim(){it <= ' '}
+                    val email: String = binding.editEmail.text.toString().trim(){it <= ' '}
+                    val senha: String = binding.editSenha.text.toString().trim(){it <= ' '}
+
+                    //Create an instance and create a register a user with email and password
+                    auth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener(this){ task ->
+                        if(task.isSuccessful){
+                            //Se o registro for feito com sucesso
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                            Toast.makeText(
+                                this@CadastroActivity,
+                                "Você se registrou com sucesso!",
+                                Toast.LENGTH_SHORT).show()
+
+                            val intent = Intent(this@CadastroActivity, LoginActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            intent.putExtra("user_id",firebaseUser.uid)
+                            intent.putExtra("email_id", email)
+                            startActivity(intent)
+                            finish()
+                        }else{
+                            Toast.makeText(this@CadastroActivity, task.exception!!.message.toString(),
+                            Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+
+        }
+
     }
+
+
+
 }
