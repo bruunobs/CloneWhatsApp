@@ -10,4 +10,8 @@
     <!-- Login -->
     <string name="cadastre_se">Não tem conta? <font color="#34B7F1"> Cadastre-se</font></string>
     <string name="imagem_introducao">Imagem introdução do app</string>
+    <string name="botao_logar">Entrar</string>
+    <string name="hint_email">Digite o seu e-mail</string>
+    <string name="hint_senha">Digite a sua senha</string>
+    <string name="imagem_logo_login">Imagem logo login</string>
 </resources>

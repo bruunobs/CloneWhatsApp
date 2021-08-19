@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Botao">
-        <item name="android:background">@color/corAccent</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="android:layout_marginStart">@dimen/layout_margin_Start</item>
