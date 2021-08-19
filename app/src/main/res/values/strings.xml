@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">CloneWhatsApp</string>
+
+    <!-- Pagina Inicial WhatsApp -->
+    <string name="titulo_bemVindo">Bem-vindo(a) ao WhatsApp</string>
+    <string name="tos">Leia nossa <font color="#34B7F1">Política de Privacidade.</font> Toque em "Concordar &amp; Continuar" para aceitar os<br />
+        <font color="#34B7F1"> Termos de Serviço</font></string>
+    <string name="botao_concordar">Concordar &amp; Continuar</string>
+
+    <!-- Login -->
+    <string name="cadastre_se">Não tem conta? <font color="#34B7F1"> Cadastre-se</font></string>
+    <string name="imagem_introducao">Imagem introdução do app</string>
 </resources>

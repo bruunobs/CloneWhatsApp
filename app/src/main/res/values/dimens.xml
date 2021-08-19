@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_text_size">14sp</dimen>
+
+    <dimen name="layout_margin_Left">24dp</dimen>
+    <dimen name="layout_margin_Right">24dp</dimen>
+    <dimen name="layout_margin_Top">24dp</dimen>
+    <dimen name="layout_margin_Bottom">24dp</dimen>
+    <dimen name="layout_margin_End">24dp</dimen>
+    <dimen name="layout_margin_Start">24dp</dimen>
+
+</resources>
