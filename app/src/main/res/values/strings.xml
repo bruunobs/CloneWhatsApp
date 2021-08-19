@@ -14,4 +14,11 @@
     <string name="hint_email">Digite o seu e-mail</string>
     <string name="hint_senha">Digite a sua senha</string>
     <string name="imagem_logo_login">Imagem logo login</string>
+
+
+    <!-- Cadastro -->
+    <string name="hint_nome">Digite o seu nome</string>
+    <string name="login_cadastrese">Já tem uma conta ?  <font color="#34B7F1"> Entre</font></string>
+    <string name="button_cadastrar"> Cadastrar</string>
+
 </resources>
