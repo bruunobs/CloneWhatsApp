@@ -22,12 +22,12 @@ class CadastroActivity : AppCompatActivity() {
 
         val binding = ActivityCadastroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        /*
+
+
         binding.textEntrarLogin.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
-         */
+
         auth = FirebaseAuth.getInstance()
 
         binding.buttonCadastrar.setOnClickListener {
@@ -56,6 +56,7 @@ class CadastroActivity : AppCompatActivity() {
                     ).show()
                 }
                 else -> {
+                    //Se tiver espaço ele vai remover
                     val nome: String = binding.editNome.text.toString().trim(){it <= ' '}
                     val email: String = binding.editEmail.text.toString().trim(){it <= ' '}
                     val senha: String = binding.editSenha.text.toString().trim(){it <= ' '}
