@@ -8,8 +8,8 @@ import android.view.View
 import android.widget.Toast
 import com.app.clonewhatsapp.databinding.ActivityCadastroBinding
 import com.app.clonewhatsapp.login.LoginActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.*
+import java.lang.Exception
 
 
 class CadastroActivity : AppCompatActivity() {
@@ -77,8 +77,20 @@ class CadastroActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }else{
-                            Toast.makeText(this@CadastroActivity, task.exception!!.message.toString(),
-                            Toast.LENGTH_SHORT).show()
+                            var excecao = ""
+                            try{
+                                throw task.exception!!
+                            }catch (e: FirebaseAuthUserCollisionException){
+                                excecao = "Essa conta ja foi cadastrada!"
+                            }catch (e: FirebaseAuthWeakPasswordException){
+                                excecao = "Digite uma senha mais forte!"
+                            }catch (e: FirebaseAuthInvalidCredentialsException){
+                                excecao = "Digite um e-mail válido"
+                            }catch (e: Exception){
+                                Toast.makeText(this@CadastroActivity, task.exception!!.message.toString(),
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                            Toast.makeText(this@CadastroActivity, excecao, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
