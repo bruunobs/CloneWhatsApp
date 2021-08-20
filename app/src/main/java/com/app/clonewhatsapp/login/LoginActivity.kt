@@ -32,9 +32,6 @@ class LoginActivity : AppCompatActivity() {
         }
         auth = FirebaseAuth.getInstance()
 
-        //val userId = intent.getStringExtra("user_id")
-        //val emailId = intent.getStringExtra("email_id")
-
         binding.buttonEntrar.setOnClickListener {
             when {
                 TextUtils.isEmpty(binding.editEmail.text.toString().trim { it <= ' ' }) -> {
@@ -66,8 +63,6 @@ class LoginActivity : AppCompatActivity() {
 
                                 val intent = Intent(this@LoginActivity, PrincipalActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                //intent.putExtra("user_id",auth.currentUser!!.uid)
-                                //intent.putExtra("email_id", email)
                                 startActivity(intent)
                                 finish()
                             } else {

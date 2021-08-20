@@ -23,18 +23,22 @@ class MainActivity : AppCompatActivity() {
         binding.buttonConcordo.setOnClickListener {
             val intent = Intent(this@MainActivity,LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
         auth = FirebaseAuth.getInstance()
 
     }
+    /*
     override fun onStart() {
         super.onStart()
         if (auth.currentUser!! != null){
-            val intent = Intent(this@MainActivity, PrincipalActivity::class.java)
-            startActivity(intent)
             finish()
+            val intent = Intent(this, PrincipalActivity::class.java)
+            startActivity(intent)
+
         }
     }
+     */
 
 
 }

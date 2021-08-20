@@ -21,4 +21,8 @@
     <string name="login_cadastrese">Já tem uma conta ?  <font color="#34B7F1"> Entre</font></string>
     <string name="button_cadastrar"> Cadastrar</string>
 
+    <string name="pesquisar_menu_principal">Pesquisar</string>
+    <string name="configuracao_menu_principal">Configurações</string>
+    <string name="sair_menu_principal">Sair</string>
+
 </resources>
