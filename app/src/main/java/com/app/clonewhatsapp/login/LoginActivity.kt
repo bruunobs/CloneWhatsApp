@@ -32,6 +32,8 @@ class LoginActivity : AppCompatActivity() {
         }
         auth = FirebaseAuth.getInstance()
 
+
+
         binding.buttonEntrar.setOnClickListener {
             when {
                 TextUtils.isEmpty(binding.editEmail.text.toString().trim { it <= ' ' }) -> {
@@ -59,33 +61,42 @@ class LoginActivity : AppCompatActivity() {
                     auth.signInWithEmailAndPassword(email, senha)
                         .addOnCompleteListener(this@LoginActivity) { task ->
                             if (task.isSuccessful) {
-                                Toast.makeText(this@LoginActivity, "Voce teve sucesso ao logar!",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Voce teve sucesso ao logar!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
 
-                                val intent = Intent(this@LoginActivity, PrincipalActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                val intent =
+                                    Intent(this@LoginActivity, PrincipalActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                                 finish()
                             } else {
                                 var excecao = ""
                                 try {
                                     throw task.exception!!
-                                }catch (e: FirebaseAuthInvalidUserException){
+                                } catch (e: FirebaseAuthInvalidUserException) {
                                     excecao = "Usuário não está cadastrado."
-                                }catch (e: FirebaseAuthInvalidCredentialsException){
+                                } catch (e: FirebaseAuthInvalidCredentialsException) {
                                     excecao = "E-mail ou senha não correspondem."
-                                }catch (e: Exception){
+                                } catch (e: Exception) {
                                     excecao = "Erro ao logar usuario" +
-                                    Toast.makeText(this@LoginActivity, task.exception!!.message.toString(),
-                                        Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(
+                                                this@LoginActivity,
+                                                task.exception!!.message.toString(),
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                 }
-                                Toast.makeText(this@LoginActivity,excecao,Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@LoginActivity, excecao, Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                 }
             }
         }
     }
-
 
 
 }

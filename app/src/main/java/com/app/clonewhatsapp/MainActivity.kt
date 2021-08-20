@@ -20,25 +20,22 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+        if (user != null){
+            startActivity(Intent(this@MainActivity,PrincipalActivity::class.java))
+            finish()
+        }
+
         binding.buttonConcordo.setOnClickListener {
             val intent = Intent(this@MainActivity,LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
-        auth = FirebaseAuth.getInstance()
 
     }
-    /*
-    override fun onStart() {
-        super.onStart()
-        if (auth.currentUser!! != null){
-            finish()
-            val intent = Intent(this, PrincipalActivity::class.java)
-            startActivity(intent)
 
-        }
-    }
-     */
+
 
 
 }
