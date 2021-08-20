@@ -9,7 +9,11 @@ import com.app.clonewhatsapp.MainActivity
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.cadastro.CadastroActivity
 import com.app.clonewhatsapp.databinding.ActivityLoginBinding
+import com.app.clonewhatsapp.principal.PrincipalActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseUser
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,8 +32,8 @@ class LoginActivity : AppCompatActivity() {
         }
         auth = FirebaseAuth.getInstance()
 
-        val userId = intent.getStringExtra("user_id")
-        val emailId = intent.getStringExtra("email_id")
+        //val userId = intent.getStringExtra("user_id")
+        //val emailId = intent.getStringExtra("email_id")
 
         binding.buttonEntrar.setOnClickListener {
             when {
@@ -60,21 +64,33 @@ class LoginActivity : AppCompatActivity() {
                             if (task.isSuccessful) {
                                 Toast.makeText(this@LoginActivity, "Voce teve sucesso ao logar!",Toast.LENGTH_SHORT).show()
 
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                val intent = Intent(this@LoginActivity, PrincipalActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                intent.putExtra("user_id",auth.currentUser!!.uid)
-                                intent.putExtra("email_id", email)
+                                //intent.putExtra("user_id",auth.currentUser!!.uid)
+                                //intent.putExtra("email_id", email)
                                 startActivity(intent)
                                 finish()
                             } else {
-                                Toast.makeText(this@LoginActivity, task.exception!!.message.toString(),
-                                    Toast.LENGTH_SHORT).show()
+                                var excecao = ""
+                                try {
+                                    throw task.exception!!
+                                }catch (e: FirebaseAuthInvalidUserException){
+                                    excecao = "Usuário não está cadastrado."
+                                }catch (e: FirebaseAuthInvalidCredentialsException){
+                                    excecao = "E-mail ou senha não correspondem."
+                                }catch (e: Exception){
+                                    excecao = "Erro ao logar usuario" +
+                                    Toast.makeText(this@LoginActivity, task.exception!!.message.toString(),
+                                        Toast.LENGTH_SHORT).show()
+                                }
+                                Toast.makeText(this@LoginActivity,excecao,Toast.LENGTH_SHORT).show()
                             }
                         }
                 }
             }
         }
     }
+
 
 
 }

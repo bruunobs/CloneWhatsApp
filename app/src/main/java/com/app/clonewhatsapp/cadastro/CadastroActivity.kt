@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
 import android.widget.Toast
 import com.app.clonewhatsapp.databinding.ActivityCadastroBinding
 import com.app.clonewhatsapp.login.LoginActivity
+import com.app.clonewhatsapp.model.Usuario
 import com.google.firebase.auth.*
 import java.lang.Exception
 
@@ -27,11 +27,13 @@ class CadastroActivity : AppCompatActivity() {
         binding.textEntrarLogin.setOnClickListener {
             onBackPressed()
         }
-
+        //val usuario = Usuario(nome = binding.editNome, email = binding.editEmail, senha = binding.editSenha)
         auth = FirebaseAuth.getInstance()
 
         binding.buttonCadastrar.setOnClickListener {
             when{
+
+
                 TextUtils.isEmpty(binding.editNome.text.toString().trim{it <= ' '}) ->{
                     Toast.makeText(
                         this@CadastroActivity,
@@ -73,8 +75,8 @@ class CadastroActivity : AppCompatActivity() {
 
                             val intent = Intent(this@CadastroActivity, LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            intent.putExtra("user_id",firebaseUser.uid)
-                            intent.putExtra("email_id", email)
+                            //intent.putExtra("user_id",firebaseUser.uid)
+                            //intent.putExtra("email_id", email)
                             startActivity(intent)
                             finish()
                         }else{

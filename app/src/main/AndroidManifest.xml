@@ -9,13 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CloneWhatsApp">
-        <activity android:name=".cadastro.CadastroActivity"
+        <activity android:name=".principal.PrincipalActivity"></activity>
+        <activity
+            android:name=".cadastro.CadastroActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/TemaLogin"></activity>
+            android:theme="@style/TemaLogin" />
         <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/TemaLogin"></activity>
+            android:theme="@style/TemaLogin" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
