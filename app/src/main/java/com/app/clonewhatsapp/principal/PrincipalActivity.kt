@@ -15,6 +15,6 @@ class PrincipalActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.toolbarPrincipal)
         toolbar.setTitle("WhatsApp")
-        setSupportActionBar(toolbar) 
+        setSupportActionBar(toolbar)
     }
 }
