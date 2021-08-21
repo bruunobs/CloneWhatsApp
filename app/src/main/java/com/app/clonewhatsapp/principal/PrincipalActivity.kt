@@ -6,16 +6,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.FragmentManager
+import androidx.viewpager2.widget.ViewPager2
 import com.app.clonewhatsapp.R
+import com.app.clonewhatsapp.adapter.ViewPagerAdapter
 import com.app.clonewhatsapp.login.LoginActivity
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
-import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter
+
 
 class PrincipalActivity : AppCompatActivity() {
 
     private lateinit var toolbar: Toolbar
     lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,16 +31,27 @@ class PrincipalActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+        val viewPager2 = findViewById<ViewPager2>(R.id.viewPager)
+
+        val adapter = ViewPagerAdapter(supportFragmentManager,lifecycle)
+        viewPager2.adapter = adapter
+
+        TabLayoutMediator(tabLayout,viewPager2){tab,position ->
+            when(position){
+                0->{
+                    tab.text="Conversas"
+                }
+                1->{
+                    tab.text="Chamadas"
+                }
+            }
+        }.attach()
+
+
     }
     //Configuração Abas
-    val adapter: FragmentPagerItemAdapter = FragmentPagerItemAdapter(
-        supportFragmentManager,
 
-    )
-
-    internal class viewPagerAdapter(fragmentManager: FragmentManager): FragmentPagerItemAdapter(fragmentManager){
-
-    }
 
     //Configuração Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
