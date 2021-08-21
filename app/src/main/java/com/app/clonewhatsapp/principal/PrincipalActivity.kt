@@ -4,13 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Switch
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.FragmentManager
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -28,7 +28,17 @@ class PrincipalActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
     }
+    //Configuração Abas
+    val adapter: FragmentPagerItemAdapter = FragmentPagerItemAdapter(
+        supportFragmentManager,
 
+    )
+
+    internal class viewPagerAdapter(fragmentManager: FragmentManager): FragmentPagerItemAdapter(fragmentManager){
+
+    }
+
+    //Configuração Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_principal,menu)
         return super.onCreateOptionsMenu(menu)
