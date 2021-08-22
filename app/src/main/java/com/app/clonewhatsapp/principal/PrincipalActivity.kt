@@ -30,6 +30,7 @@ class PrincipalActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         auth = FirebaseAuth.getInstance()
+        //Configuração Abas
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         val viewPager2 = findViewById<ViewPager2>(R.id.viewPager)
@@ -40,9 +41,15 @@ class PrincipalActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout,viewPager2){tab,position ->
             when(position){
                 0->{
-                    tab.text="Conversas"
+                    tab.text="Camera"
                 }
                 1->{
+                    tab.text="Conversas"
+                }
+                2->{
+                    tab.text="Status"
+                }
+                3->{
                     tab.text="Chamadas"
                 }
             }
@@ -50,7 +57,7 @@ class PrincipalActivity : AppCompatActivity() {
 
 
     }
-    //Configuração Abas
+
 
 
     //Configuração Menu

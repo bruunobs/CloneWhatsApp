@@ -25,6 +25,7 @@
     <string name="configuracao_menu_principal">Configurações</string>
     <string name="sair_menu_principal">Sair</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragmentCamera">Camera</string>
+    <string name="hello_blank_fragmentStatus">Status</string>
 
 </resources>
