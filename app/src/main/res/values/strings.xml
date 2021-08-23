@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CloneWhatsApp</string>
+    <string name="app_name">WhatsApp</string>
 
     <!-- Pagina Inicial WhatsApp -->
     <string name="titulo_bemVindo">Bem-vindo(a) ao WhatsApp</string>

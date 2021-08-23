@@ -41,16 +41,16 @@ class PrincipalActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout,viewPager2){tab,position ->
             when(position){
                 0->{
-                    tab.text="Camera"
+                    tab.setIcon(R.drawable.ic_baseline_camera_alt_24)
                 }
                 1->{
-                    tab.text="Conversas"
+                    tab.text="CONVERSAS"
                 }
                 2->{
-                    tab.text="Status"
+                    tab.text="STATUS"
                 }
                 3->{
-                    tab.text="Chamadas"
+                    tab.text="CHAMADAS"
                 }
             }
         }.attach()
