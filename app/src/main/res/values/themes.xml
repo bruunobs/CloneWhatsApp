@@ -28,4 +28,15 @@
     <style name="ToolBar" parent="Theme.AppCompat.NoActionBar">
 
     </style>
+
+    <style name="TabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/white</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">@color/white_unselected</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="indicatorColor">@color/white</item>
+
+    </style>
+
 </resources>

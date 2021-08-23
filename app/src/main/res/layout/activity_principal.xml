@@ -14,7 +14,19 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="?actionBarSize"
+        app:tabIndicatorFullWidth="false"
+        app:tabPadding="0dp"
+        android:background="@color/corPrimaria"
+        app:tabTextColor="@color/white_unselected"
+        app:tabSelectedTextColor="@color/white"
+        app:tabIndicator="@color/white"
+        app:tabIndicatorHeight="5dp"
+        app:tabIconTint="@color/white_unselected"
+        app:tabMode="scrollable"
+        app:tabTextAppearance="@style/TabLayout"
+        app:tabGravity="center"
+        />
 
 
     <androidx.viewpager2.widget.ViewPager2

@@ -31,6 +31,7 @@ class PrincipalActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         auth = FirebaseAuth.getInstance()
+        //Configuração Abas
 
         val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         val viewPager2 = findViewById<ViewPager2>(R.id.viewPager)
@@ -41,17 +42,23 @@ class PrincipalActivity : AppCompatActivity() {
         TabLayoutMediator(tabLayout,viewPager2){tab,position ->
             when(position){
                 0->{
-                    tab.text="Conversas"
+                    tab.setIcon(R.drawable.ic_baseline_camera_alt_24)
                 }
                 1->{
-                    tab.text="Chamadas"
+                    tab.text="CONVERSAS"
+                }
+                2->{
+                    tab.text="STATUS"
+                }
+                3->{
+                    tab.text="CHAMADAS"
                 }
             }
         }.attach()
 
 
     }
-    //Configuração Abas
+
 
 
     //Configuração Menu
