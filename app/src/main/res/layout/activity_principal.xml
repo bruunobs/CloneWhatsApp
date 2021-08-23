@@ -24,7 +24,7 @@
         app:tabIndicatorHeight="5dp"
         app:tabIconTint="@color/white_unselected"
         app:tabMode="scrollable"
-        app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"
+        app:tabTextAppearance="@style/TabLayout"
         app:tabGravity="center"
         />
 
