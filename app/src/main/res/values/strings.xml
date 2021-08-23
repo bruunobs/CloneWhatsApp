@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CloneWhatsApp</string>
+    <string name="app_name">WhatsApp</string>
 
     <!-- Pagina Inicial WhatsApp -->
     <string name="titulo_bemVindo">Bem-vindo(a) ao WhatsApp</string>
@@ -26,5 +26,6 @@
     <string name="sair_menu_principal">Sair</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="config">Configurações</string>
 
 </resources>

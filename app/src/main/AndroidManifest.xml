@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CloneWhatsApp">
-        <activity android:name=".principal.PrincipalActivity"></activity>
+        <activity
+            android:name=".ConfiguracoesActivity"
+            android:exported="true"
+            />
+        <activity android:name=".principal.PrincipalActivity" />
         <activity
             android:name=".cadastro.CadastroActivity"
             android:screenOrientation="portrait"

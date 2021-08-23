@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
+import com.app.clonewhatsapp.ConfiguracoesActivity
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.adapter.ViewPagerAdapter
 import com.app.clonewhatsapp.login.LoginActivity
@@ -64,6 +65,9 @@ class PrincipalActivity : AppCompatActivity() {
             R.id.menuSair -> {
                 deslogarUsuario()
 
+            }
+            R.id.menuConfiguracoes -> {
+                startActivity(Intent(this,ConfiguracoesActivity::class.java))
             }
 
         }
