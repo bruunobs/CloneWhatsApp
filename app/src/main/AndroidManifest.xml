@@ -15,6 +15,11 @@
             android:theme="@style/Theme.CloneWhatsApp"
             />
         <activity android:name=".principal.PrincipalActivity" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         <activity
             android:name=".cadastro.CadastroActivity"
             android:screenOrientation="portrait"
@@ -24,11 +29,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/TemaLogin" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
