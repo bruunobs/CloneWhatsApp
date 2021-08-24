@@ -26,8 +26,30 @@
     <string name="sair_menu_principal">Sair</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragmentCamera">Camera</string>
-    <string name="config">Configurações</string>
     <string name="hello_blank_fragmentStatus">Status</string>
+
+    <!-- Configuracao App-->
+    <string name="config">Configurações</string>
+    <string name="perssoa_perfil">Foto do perfil da pessoa</string>
+    <string name="nome_pessoa_perfil">Bruno</string>
+    <string name="text_status">Obrigado por mais um dia</string>
+    <string name="conta_config">Conta</string>
+    <string name="conta_config_desc">Privacidade, segurança, mudar número</string>
+    <string name="conversas_config">Conversas</string>
+    <string name="conversas_config_desc">Privacidade, segurança, mudar número</string>
+    <string name="notificacoes_config">Notificações</string>
+    <string name="notificacoes_config_desc">Mensagem, toques de grupo, chamada</string>
+    <string name="armazenamento_config">Armazenamento e dados</string>
+    <string name="armazenamento_config_desc">Uso de rede, download automático</string>
+    <string name="ajuda_config">Ajuda</string>
+    <string name="ajuda_config_desc">Central de ajuda, fale conosco, política de privacidade</string>
+    <string name="convite_config">Convidar um amigo</string>
+    <string name="facebook_from_config">from</string>
+    <string name="facebook_config">FACEBOOK</string>
+
+
+    <!-- Pessoas App-->
+
 
 
 </resources>
