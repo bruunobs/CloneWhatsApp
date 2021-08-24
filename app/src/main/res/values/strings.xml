@@ -26,6 +26,8 @@
     <string name="sair_menu_principal">Sair</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragmentCamera">Camera</string>
+    <string name="config">Configurações</string>
     <string name="hello_blank_fragmentStatus">Status</string>
+
 
 </resources>

@@ -14,7 +14,7 @@ class ConfiguracoesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityConfiguracoesBinding.inflate(layoutInflater)
+        val binding = ActivityConfiguracoesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         toolbar = findViewById(R.id.toolbarPrincipal)

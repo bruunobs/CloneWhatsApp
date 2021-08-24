@@ -12,6 +12,7 @@
         <activity
             android:name=".ConfiguracoesActivity"
             android:exported="true"
+            android:theme="@style/Theme.CloneWhatsApp"
             />
         <activity android:name=".principal.PrincipalActivity" />
         <activity
