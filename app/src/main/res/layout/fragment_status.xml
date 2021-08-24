@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.StatusFragment"
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,9 +22,6 @@
         android:id="@+id/fab_status_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_goneMarginEnd="16dp"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
@@ -30,7 +29,11 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic__camera_white"
-        app:tint="@color/white" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_goneMarginEnd="16dp"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -38,7 +41,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintStart_toStartOf="@id/fab_status_camera"
         android:backgroundTint="@color/light_gray"
         android:clickable="true"
         android:focusable="true"
@@ -46,7 +48,9 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@id/fab_status_camera"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/fab_status_camera"
         app:layout_goneMarginEnd="16dp"
-        app:tint="@color/fab_status" />
+        app:tint="@color/fab_status"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

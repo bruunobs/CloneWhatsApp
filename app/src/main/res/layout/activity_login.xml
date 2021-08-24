@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
     tools:context=".login.LoginActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -11,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginEnd="152dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:src="@drawable/facebook_logo"
@@ -19,9 +21,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCadastrese"
-        app:layout_constraintVertical_bias="0.428"
+        app:layout_constraintVertical_bias="0.878"
         app:maxImageSize="40dp"
-        app:tint="@null" />
+        app:tint="@null"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton4"
@@ -38,9 +41,10 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCadastrese"
-        app:layout_constraintVertical_bias="0.428"
+        app:layout_constraintVertical_bias="0.878"
         app:srcCompat="@drawable/google_logo"
-        app:tint="@null" />
+        app:tint="@null"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -112,6 +116,7 @@
         android:layout_marginEnd="24dp"
         android:background="@color/corAccent"
         android:text="@string/botao_logar"
+        android:textColor="@color/white"
         app:backgroundTint="@color/corAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -124,6 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:clickable="true"
+        android:minHeight="48dp"
         android:text="@string/cadastre_se"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

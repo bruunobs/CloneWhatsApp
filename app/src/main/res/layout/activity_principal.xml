@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".principal.PrincipalActivity"
     >
@@ -15,18 +17,18 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:tabIndicatorFullWidth="false"
-        app:tabPadding="0dp"
         android:background="@color/corPrimaria"
-        app:tabTextColor="@color/white_unselected"
-        app:tabSelectedTextColor="@color/white"
-        app:tabIndicator="@color/white"
-        app:tabIndicatorHeight="5dp"
-        app:tabIconTint="@color/white_unselected"
-        app:tabMode="scrollable"
-        app:tabTextAppearance="@style/TabLayout"
         app:tabGravity="center"
-        />
+        app:tabIconTint="@color/white_unselected"
+        app:tabIndicator="@color/white"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="5dp"
+        app:tabMode="scrollable"
+        app:tabPadding="0dp"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/TabLayout"
+        app:tabTextColor="@color/white_unselected"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
     <androidx.viewpager2.widget.ViewPager2
