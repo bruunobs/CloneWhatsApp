@@ -47,9 +47,17 @@
     <string name="facebook_from_config">from</string>
     <string name="facebook_config">FACEBOOK</string>
 
+    <!--    Contatos App -->
+    <string name="contatos">Contatos</string>
+    <string name="novo_grupo">Novo grupo</string>
+    <string name="novo_contato">Novo contato</string>
+
+    <!-- Menu Contatos-->
+    <string name="menu_contatos_convidar">Convidar um amigo</string>
+    <string name="menu_contatos_atualizar">Atualizar</string>
+    <string name="menu_contatos_ajuda">Ajuda</string>
 
     <!-- Pessoas App-->
-
 
 
 </resources>

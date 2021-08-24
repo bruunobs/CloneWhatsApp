@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/menuPesquisa"
+        android:title="@string/pesquisar_menu_principal"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_pesquisa_branco"
+        />
+
+    <item
+        android:id="@+id/menuConvidar"
+        android:title="@string/menu_contatos_convidar"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/menuContatos"
+        android:title="@string/contatos"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/menuAtualizar"
+        android:title="@string/menu_contatos_atualizar"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/menuAjuda"
+        android:title="@string/menu_contatos_ajuda"
+        app:showAsAction="never"
+        />
+
+</menu>

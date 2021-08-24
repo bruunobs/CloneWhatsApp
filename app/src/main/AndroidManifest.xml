@@ -10,16 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CloneWhatsApp">
         <activity
+            android:name=".ContatosActivity"
+            android:exported="true" />
+        <activity
             android:name=".ConfiguracoesActivity"
             android:exported="true"
-            android:theme="@style/Theme.CloneWhatsApp"
-            />
-        <activity android:name=".principal.PrincipalActivity" />
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.CloneWhatsApp" />
+        <activity android:name=".principal.PrincipalActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".cadastro.CadastroActivity"
             android:screenOrientation="portrait"
@@ -28,9 +31,7 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TemaLogin" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
