@@ -24,5 +24,13 @@ class ConfiguracoesActivity : AppCompatActivity() {
         binding.backArrow.setOnClickListener {
             onBackPressed()
         }
+
+        binding.ImagemPerfil.setOnClickListener{
+            startActivity(Intent(this@ConfiguracoesActivity,PerfilActivity::class.java))
+        }
+
+        binding.linearLayoutPerfil.setOnClickListener {
+            startActivity(Intent(this@ConfiguracoesActivity,PerfilActivity::class.java))
+        }
     }
 }
