@@ -40,42 +40,40 @@ class PerfilActivity : AppCompatActivity() {
             ActivityResultContracts.GetContent(),
             ActivityResultCallback {
                 binding.ImagemPerfil.setImageURI(it)
-                uploadImageToFirebaseStorage()
+                //uploadImageToFirebaseStorage()
 
             }
         )
 
         binding.fabFotoPerfil.setOnClickListener {
-            //getImage.launch("image/*")
-            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
+            getImage.launch("image/*")
+            //bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
 
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 100 && resultCode == RESULT_OK){
-            ImageUri = data?.data!!
-            binding.ImagemPerfil.setImageURI(ImageUri)
-            uploadImageToFirebaseStorage()
-        }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if(requestCode == 100 && resultCode == RESULT_OK){
+//            val imageUri = data?.data!!
+//            binding.ImagemPerfil.setImageURI(imageUri)
+//            //uploadImageToFirebaseStorage()
+//        }
+//
+//    }
 
-    }
 
-    private fun showSelectPhoto(){
 
-    }
-
-    private fun uploadImageToFirebaseStorage(){
-
-        //cria uma string para a imagem
-        val filename = UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
-
-        ref.putFile(ImageUri).addOnSuccessListener {
-            binding.ImagemPerfil.setImageURI(null)
-            Log.d("PerfilActivity", "Imagem salva com sucesso: ${it.metadata?.path}")
-
-        }
-    }
+//    private fun uploadImageToFirebaseStorage(){
+//
+//        //cria uma string para a imagem
+//        val filename = UUID.randomUUID().toString()
+//        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+//
+//        ref.putFile(ImageUri).addOnSuccessListener {
+//            binding.ImagemPerfil.setImageURI(null)
+//            Log.d("PerfilActivity", "Imagem salva com sucesso: ${it.metadata?.path}")
+//
+//        }
+//    }
 }
