@@ -2,6 +2,7 @@ package com.app.clonewhatsapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.databinding.ActivityPerfilBinding
 
@@ -21,6 +22,10 @@ class PerfilActivity : AppCompatActivity() {
 
         binding.backArrowPerfil.setOnClickListener {
             onBackPressed()
+        }
+
+        binding.fabFotoPerfil.setOnClickListener {
+            Log.d("PerfilActivity","Tentando salvar a foto")
         }
     }
 }
