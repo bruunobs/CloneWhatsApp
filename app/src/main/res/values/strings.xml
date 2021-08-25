@@ -65,6 +65,9 @@
     <string name="perfil_desc">Esse não é seu nome de usuário nem seu PIN. <br/>Esse nome será
     visível para seus contatos do<br/> WhatsApp</string>
     <string name="numero_telefone">+55 85 98855 5544</string>
+    <string name="camera">Camera</string>
+    <string name="galeria">Galeria</string>
+    <string name="foto_do_perfil">Foto do Perfil</string>
 
     <!-- Pessoas App-->
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.databinding.ActivityConfiguracoesBinding
+import com.app.clonewhatsapp.profile.PerfilActivity
 
 class ConfiguracoesActivity : AppCompatActivity() {
 
@@ -26,11 +27,11 @@ class ConfiguracoesActivity : AppCompatActivity() {
         }
 
         binding.ImagemPerfil.setOnClickListener{
-            startActivity(Intent(this@ConfiguracoesActivity,PerfilActivity::class.java))
+            startActivity(Intent(this@ConfiguracoesActivity, PerfilActivity::class.java))
         }
 
         binding.linearLayoutPerfil.setOnClickListener {
-            startActivity(Intent(this@ConfiguracoesActivity,PerfilActivity::class.java))
+            startActivity(Intent(this@ConfiguracoesActivity, PerfilActivity::class.java))
         }
     }
 }

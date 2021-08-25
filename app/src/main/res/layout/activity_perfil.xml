@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:backgroundTint="@color/white"
-    tools:context=".PerfilActivity">
+    tools:context=".profile.PerfilActivity">
 
     <include
         android:id="@+id/include"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/ImagemPerfil"
+        android:id="@+id/Imagem_Perfil"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginTop="30dp"
@@ -61,7 +61,7 @@
         android:text="@string/nome"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/ImagemPerfil" />
+        app:layout_constraintTop_toBottomOf="@+id/Imagem_Perfil" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -135,8 +135,8 @@
         android:backgroundTint="@color/corPrimaria"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/ImagemPerfil"
-        app:layout_constraintEnd_toEndOf="@+id/ImagemPerfil"
+        app:layout_constraintBottom_toBottomOf="@+id/Imagem_Perfil"
+        app:layout_constraintEnd_toEndOf="@+id/Imagem_Perfil"
         app:srcCompat="@drawable/ic__camera_white" />
 
     <EditText

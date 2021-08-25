@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CloneWhatsApp" >
         <activity
-            android:name=".PerfilActivity"
+            android:name=".profile.PerfilActivity"
             android:exported="true" />
         <activity
             android:name=".ContatosActivity"
