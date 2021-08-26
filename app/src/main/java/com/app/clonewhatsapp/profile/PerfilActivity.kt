@@ -157,7 +157,7 @@ class PerfilActivity : AppCompatActivity() {
     // --------------------   Upload de Imagem------------------------------
     private fun uploadImage() {
 
-        if (imageUri!! != null) {
+        if (imageUri == null) return
 
             val filename = UUID.randomUUID().toString()
             val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
@@ -174,7 +174,7 @@ class PerfilActivity : AppCompatActivity() {
                 }
             }
 
-        }
+
 
 
     }
@@ -202,20 +202,17 @@ class PerfilActivity : AppCompatActivity() {
 
     private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
 
-        val uid = FirebaseAuth.getInstance().uid ?: ""
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        //val uid = FirebaseAuth.getInstance().uid ?: ""
+
+        val uid = UUID.randomUUID().toString()
+
+        val ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
 
         var usuario = Usuario(uid, binding.editTextNome.text.toString(), profileImageUrl)
 
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                //val uid = FirebaseAuth.getInstance().uid ?: ""
-                //val usuario = Usuario(uid, nomeUsuario, )
-                //val usuario = Usuario(uid,nomeUsuario.text.toString(),profileImageUrl).sn
-                //val usuario: Usuario = snapshot.getValue(Usuario::class.java)!!
-                //val usuario: Usuario? = snapshot.getValue(Usuario::class.java)
-                //val usuarioClasse: Usuario = snapshot.getValue(Usuario::class.java)!!
 
                 usuario = snapshot.getValue(Usuario::class.java)!!
                 binding.editTextNome.setText(usuario?.nome)
@@ -236,12 +233,10 @@ class PerfilActivity : AppCompatActivity() {
 
         })
 
-
-
             ref.setValue(usuario)
             .addOnSuccessListener {
 
-                Log.d("PerfilActivity", "Usuario Salvo no Banco de dados")
+                Log.d("PerfilActivity", "Usuario e Imagem Salvas no Banco de dados")
             }.addOnFailureListener() {
 
                 Log.d("PerfilActivity", "Erro ao salvar usuario  no banco de dados")
@@ -263,18 +258,10 @@ class PerfilActivity : AppCompatActivity() {
             //binding.ImagemPerfil.setImageURI(imageUri)
             uploadImage()
 
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
-            binding.ImagemPerfil.setImageBitmap(bitmap)
+            //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
+            //binding.ImagemPerfil.setImageBitmap(bitmap)
             //binding.editTextNome.setText(usuario?.nome)
             //uploadImageToFirebaseStorage()
-
-//            if (imageUri != null) {
-//
-//                //.get()
-//                    .load(imageUri)
-//                    .into(binding.ImagemPerfil)
-//
-//            }
 
         }
 
