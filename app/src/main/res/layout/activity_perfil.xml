@@ -130,14 +130,15 @@
         android:id="@+id/fab_foto_perfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:borderWidth="0dp"
-        app:tint="@color/white"
         android:backgroundTint="@color/corPrimaria"
         android:clickable="true"
         android:focusable="true"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/Imagem_Perfil"
         app:layout_constraintEnd_toEndOf="@+id/Imagem_Perfil"
-        app:srcCompat="@drawable/ic__camera_white" />
+        app:srcCompat="@drawable/ic__camera_white"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editTextNome"
@@ -149,7 +150,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.293"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textNome" />
+        app:layout_constraintTop_toBottomOf="@+id/textNome"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editTextRecado"
@@ -162,7 +164,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.293"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textRecado" />
+        app:layout_constraintTop_toBottomOf="@+id/textRecado"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textRecado"
