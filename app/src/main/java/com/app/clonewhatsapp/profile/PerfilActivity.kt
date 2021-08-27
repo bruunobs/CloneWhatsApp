@@ -71,6 +71,39 @@ class PerfilActivity : AppCompatActivity() {
 
         }
 
+        var uid2 = FirebaseAuth.getInstance().uid
+        var ref2 = FirebaseDatabase.getInstance().getReference("/usuarios/$uid2")
+
+
+        ref2.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                var usuario = snapshot.getValue(Usuario::class.java)!!
+
+                binding.editTextNome.setText(usuario?.nome)
+                binding.textTelefone.setText(usuario?.numero)
+
+                if (usuario?.profileImageUrl == "default") {
+
+                    binding.ImagemPerfil.setImageResource(R.mipmap.ic_launcher)
+
+                } else {
+                    Picasso.get()
+                        .load(usuario.profileImageUrl)
+                        .into(binding.ImagemPerfil)
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("PerfilActivity",
+                    "Nao foi possivel receber os dados "
+                )
+            }
+
+        })
+
 
     }
 
@@ -186,17 +219,8 @@ class PerfilActivity : AppCompatActivity() {
         //Só deus sabe o que isso faz
         ref.setValue(usuario)
             .addOnSuccessListener {
-//                if (usuario?.profileImageUrl == "default") {
-//
-//                    binding.ImagemPerfil.setImageResource(R.mipmap.ic_launcher)
-//
-//                } else {
-//                    Picasso.get()
-//                        .load(usuario.profileImageUrl)
-//                        .into(binding.ImagemPerfil)
-//                }
 
-                Log.d("PerfilActivity", "Usuario e Imagem Salvas no Banco de dados")
+                Log.d("PerfilActivity", "Usuario Salvo")
             }.addOnFailureListener() {
 
                 Log.d("PerfilActivity", "Erro ao salvar usuario  no banco de dados")
