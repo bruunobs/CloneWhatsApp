@@ -15,7 +15,7 @@ class ConfiguracoesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityConfiguracoesBinding.inflate(layoutInflater)
+        binding = ActivityConfiguracoesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         toolbar = findViewById(R.id.toolbarPrincipal)
@@ -26,12 +26,32 @@ class ConfiguracoesActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.ImagemPerfil.setOnClickListener{
+        binding.ImagemPerfil.setOnClickListener {
             startActivity(Intent(this@ConfiguracoesActivity, PerfilActivity::class.java))
         }
 
         binding.linearLayoutPerfil.setOnClickListener {
             startActivity(Intent(this@ConfiguracoesActivity, PerfilActivity::class.java))
         }
+
+
+        val nomePerfil = intent?.getStringExtra("nome")
+
+
+        if (nomePerfil == null) {
+            binding.nomePerfil.text = "Vazio"
+        } else {
+            binding.nomePerfil.text = "$nomePerfil"
+
+        }
+
     }
+
+
+
+
+
+
+
+
 }

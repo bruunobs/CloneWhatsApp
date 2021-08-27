@@ -6,7 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.BottomSheetPickBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import android.content.Intent
+
+
+
 
 class Bottom_sheet : BottomSheetDialogFragment(){
 
@@ -28,6 +33,8 @@ class Bottom_sheet : BottomSheetDialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         binding.ImagemCamera.setOnClickListener {
 

@@ -69,7 +69,10 @@
     <string name="galeria">Galeria</string>
     <string name="foto_do_perfil">Foto do Perfil</string>
 
+
     <!-- Pessoas App-->
 
+
+    <string name="file_path">com.example.android.fileprovider</string>
 
 </resources>

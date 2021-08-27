@@ -20,7 +20,7 @@ class CadastroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityCadastroBinding.inflate(layoutInflater)
+        binding = ActivityCadastroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -75,7 +75,7 @@ class CadastroActivity : AppCompatActivity() {
 
                             val intent = Intent(this@CadastroActivity, LoginActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            //intent.putExtra("user_id",firebaseUser.uid)
+                            intent.putExtra("user_id",firebaseUser.uid)
                             //intent.putExtra("email_id", email)
                             startActivity(intent)
                             finish()

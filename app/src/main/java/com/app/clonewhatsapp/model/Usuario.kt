@@ -1,8 +1,10 @@
 package com.app.clonewhatsapp.model
 
+import com.google.firebase.database.FirebaseDatabase
 
 class Usuario(
-    val uid: String = "",
-    val nome: String = "",
-    val profileImageUrl: String = ""
-    )
+    var uid: String = "",
+    var nome: String = "",
+    var profileImageUrl: String = "",
+    var numero: String = ""
+)
