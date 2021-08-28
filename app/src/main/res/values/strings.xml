@@ -73,6 +73,6 @@
     <!-- Pessoas App-->
 
 
-    <string name="file_path">com.example.android.fileprovider</string>
+    <string name="status_padrao">Hey there! I am using WhatsApp</string>
 
 </resources>

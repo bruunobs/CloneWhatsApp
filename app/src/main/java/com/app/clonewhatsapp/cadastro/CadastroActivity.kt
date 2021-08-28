@@ -79,6 +79,9 @@ class CadastroActivity : AppCompatActivity() {
                             //intent.putExtra("email_id", email)
                             startActivity(intent)
                             finish()
+
+
+
                         }else{
                             var excecao = ""
                             try{

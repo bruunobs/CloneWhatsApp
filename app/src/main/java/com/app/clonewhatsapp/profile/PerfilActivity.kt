@@ -34,6 +34,7 @@ class PerfilActivity : AppCompatActivity() {
 
     lateinit var storage: FirebaseStorage
     lateinit var auth: FirebaseAuth
+    lateinit var dataBase: DatabaseReference
 
     companion object {
         const val IMAGE_REQUEST = 1
@@ -49,60 +50,26 @@ class PerfilActivity : AppCompatActivity() {
         toolbar.title = ""
         setSupportActionBar(toolbar)
 
+        getData()
 
         auth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
-//        var user = auth.currentUser
-
-//        if (user != null) {
-//
-//            Log.d("PerfilActivity", "Colocar ImageURL em ImagemPerfil")
-//
-//        }
-
+        dataBase = FirebaseDatabase.getInstance().reference
 
         binding.backArrowPerfil.setOnClickListener {
             onBackPressed()
+            finish()
         }
 
         binding.fabFotoPerfil.setOnClickListener {
 
+            // var bottomSheet = BottomSheet()
+            // bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
             showBottomSheetPickPhoto()
 
         }
 
-        var uid2 = FirebaseAuth.getInstance().uid
-        var ref2 = FirebaseDatabase.getInstance().getReference("/usuarios/$uid2")
 
-
-        ref2.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                var usuario = snapshot.getValue(Usuario::class.java)!!
-
-                binding.editTextNome.setText(usuario?.nome)
-                binding.textTelefone.setText(usuario?.numero)
-
-                if (usuario?.profileImageUrl == "default") {
-
-                    binding.ImagemPerfil.setImageResource(R.mipmap.ic_launcher)
-
-                } else {
-                    Picasso.get()
-                        .load(usuario.profileImageUrl)
-                        .into(binding.ImagemPerfil)
-                }
-
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("PerfilActivity",
-                    "Nao foi possivel receber os dados "
-                )
-            }
-
-        })
 
 
     }
@@ -131,7 +98,7 @@ class PerfilActivity : AppCompatActivity() {
     // ------------------------  Bottom Sheet ----------------------------------
 
 
-    // bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
+
     private fun showBottomSheetPickPhoto() {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.bottom_sheet_pick, null)
@@ -174,6 +141,7 @@ class PerfilActivity : AppCompatActivity() {
                 Log.d("PerfilActivity", "File location: $it")
                 saveUserToFirebaseDatabase(it.toString())
 
+
             }
 
 
@@ -190,7 +158,7 @@ class PerfilActivity : AppCompatActivity() {
         //val uid = UUID.randomUUID().toString()
 
         var usuario = Usuario(uid!!, binding.editTextNome.text.toString(),
-            profileImageUrl, binding.textTelefone.text.toString())
+            profileImageUrl, binding.textTelefone.text.toString(),binding.editTextRecado.text.toString())
 
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
 
@@ -202,6 +170,7 @@ class PerfilActivity : AppCompatActivity() {
 
                 binding.editTextNome.setText(usuario?.nome)
                 binding.textTelefone.setText(usuario?.numero)
+                binding.editTextRecado.setText(usuario?.status)
 
 
             }
@@ -227,6 +196,8 @@ class PerfilActivity : AppCompatActivity() {
             }
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -240,6 +211,57 @@ class PerfilActivity : AppCompatActivity() {
 
     }
 
+
+    private fun getData(){
+        var uid2 = FirebaseAuth.getInstance().uid
+        var ref2 = FirebaseDatabase.getInstance().getReference("/usuarios/$uid2")
+
+
+        ref2.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                var usuario = snapshot.getValue(Usuario::class.java)!!
+
+                if (usuario?.profileImageUrl == "") {
+
+                    binding.ImagemPerfil.setImageResource(R.mipmap.ic_launcher)
+
+                } else {
+                    Picasso.get()
+                        .load(usuario.profileImageUrl)
+                        .into(binding.ImagemPerfil)
+                }
+
+                if (usuario?.numero == ""){
+                    binding.textTelefone.setText("+55 88 1111 1111")
+                }else{
+                    binding.textTelefone.setText(usuario?.numero)
+                }
+
+                if (usuario?.nome == ""){
+                    binding.editTextNome.setText("Nome")
+                }else{
+                    binding.editTextNome.setText(usuario?.nome)
+                }
+
+
+                if(usuario?.status == ""){
+
+                    binding.editTextRecado.setText(R.string.status_padrao)
+                }else{
+                    binding.editTextRecado.setText(usuario?.status)
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("PerfilActivity",
+                    "Nao foi possivel receber os dados "
+                )
+            }
+
+        })
+    }
 
 
 }
