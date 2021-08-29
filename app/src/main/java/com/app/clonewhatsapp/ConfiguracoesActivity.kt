@@ -48,7 +48,6 @@ class ConfiguracoesActivity : AppCompatActivity() {
 
 
 
-
     }
 
 
@@ -65,7 +64,7 @@ class ConfiguracoesActivity : AppCompatActivity() {
                 var usuario = snapshot.getValue(Usuario::class.java)!!
 
 
-                if(usuario?.nome == ""){
+                if(usuario?.nome == "" || usuario?.nome == null){
 
                     binding.nomePerfil.text == "Nome"
 
@@ -73,7 +72,7 @@ class ConfiguracoesActivity : AppCompatActivity() {
                     binding.nomePerfil.text = usuario?.nome
                 }
 
-                if (usuario?.profileImageUrl == "") {
+                if (usuario?.profileImageUrl == "" || usuario?.profileImageUrl == null) {
 
                     binding.ImagemPerfil.setImageResource(R.mipmap.ic_launcher)
 
@@ -83,7 +82,7 @@ class ConfiguracoesActivity : AppCompatActivity() {
                         .into(binding.ImagemPerfil)
                 }
 
-                if(usuario?.status == ""){
+                if(usuario?.status == "" || usuario?.status == null){
 
                     binding.StatusPerfil.setText(R.string.status_padrao)
                 }else{

@@ -9,13 +9,18 @@ import com.app.clonewhatsapp.databinding.BottomSheetPickBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.content.Intent
-
-
+import android.provider.MediaStore
+import android.util.Log
+import android.widget.Toast
 
 
 class Bottom_sheet : BottomSheetDialogFragment(){
 
     lateinit var binding: BottomSheetPickBinding
+
+    companion object{
+        const val CAMERA_REQUEST_CODE = 777
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +42,27 @@ class Bottom_sheet : BottomSheetDialogFragment(){
 
 
         binding.ImagemCamera.setOnClickListener {
+//            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//            if(intent.resolveActivity(requireActivity().packageManager) != null){
+//                startActivityForResult(intent, CAMERA_REQUEST_CODE)
+//            }else{
+//                Log.d("PerfilActivity", "Não foi possivel abrir a camera")
+//            }
+
+
+
 
         }
 
         binding.ImagemGaleria.setOnClickListener {
 
         }
+
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
 
     }
