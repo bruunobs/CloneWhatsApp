@@ -11,10 +11,7 @@
         <item name="android:layout_marginRight">@dimen/layout_margin_Right</item>
     </style>
 
-    <style name="nome">
-        <item name="android:fontFamily">@font/roboto</item>
-        <item name="android:textStyle">bold</item>
-    </style>
+
 
 
 </resources>

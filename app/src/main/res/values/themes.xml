@@ -26,6 +26,8 @@
     </style>
     
     <style name="ToolBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
 
     </style>
 
