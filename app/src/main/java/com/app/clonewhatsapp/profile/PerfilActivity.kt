@@ -184,7 +184,7 @@ class PerfilActivity : AppCompatActivity() {
                 usuario = snapshot.getValue(Usuario::class.java)!!
 
                 binding.editTextNome.setText(usuario?.nome)
-                binding.textTelefone.setText(usuario?.numero)
+                binding.EditTextTelefone.setText(usuario?.numero)
                 binding.editTextRecado.setText(usuario?.status)
 
 
@@ -256,9 +256,9 @@ class PerfilActivity : AppCompatActivity() {
                 }
 
                 if (usuario?.numero == ""){
-                    binding.textTelefone.setText("+55 88 1111 1111")
+                    binding.EditTextTelefone.setText("+55 88 1111 1111")
                 }else{
-                    binding.textTelefone.setText(usuario?.numero)
+                    binding.EditTextTelefone.setText(usuario?.numero)
                 }
 
                 if (usuario?.nome == ""){
@@ -286,15 +286,7 @@ class PerfilActivity : AppCompatActivity() {
         })
     }
 
-    private fun checkCameraHardware(context: Context): Boolean {
-        if (context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-            Toast.makeText(this,"Camera encontrada",Toast.LENGTH_SHORT).show()
-            return true
-        } else {
-            Toast.makeText(this,"Camera NÃO encontrada",Toast.LENGTH_SHORT).show()
-            return false
-        }
-    }
+
 
 
 }
