@@ -25,6 +25,8 @@ class ContatosActivity : AppCompatActivity() {
         toolbar.title = ""
         setSupportActionBar(toolbar)
 
+
+
         binding.backArrowContatos.setOnClickListener {
             onBackPressed()
         }
