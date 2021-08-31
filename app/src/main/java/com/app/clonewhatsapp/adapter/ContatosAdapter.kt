@@ -29,6 +29,7 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
         notifyDataSetChanged()
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view: View = LayoutInflater.from(mContest).inflate(R.layout.adapter_contatos,parent,false)
@@ -75,12 +76,13 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
                     filterResult.count = listaContatosFilter.size
                     filterResult.values = listaContatosFilter
                 }else{
+
                     var cs = cs.toString().toLowerCase()
                     val itemModal = ArrayList<Usuario>()
 
                     for (item in listaContatosFilter)
                     {
-                     if(item.nome.contains(cs.toLowerCase())){
+                     if(item.nome.toLowerCase().contains(cs.toLowerCase())){
                          itemModal.add(item)
                      }
                     }

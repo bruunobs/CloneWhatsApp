@@ -4,36 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imagem_perfil_contatos"
-        android:layout_width="50dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_height="50dp"
-        android:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/nome_contatos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="12dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_toRightOf="@id/imagem_perfil_contatos"
-        android:text="Nome Usuario"
-        android:textSize="15sp" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagem_perfil_contatos"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/status_contatos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/nome_contatos"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="3dp"
-        android:layout_toRightOf="@id/imagem_perfil_contatos"
-        android:text="Exemplo de status do usuario"
-        android:textSize="13sp" />
+        <TextView
+            android:id="@+id/nome_contatos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/imagem_perfil_contatos"
+            android:text="Nome Usuario"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/status_contatos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nome_contatos"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/imagem_perfil_contatos"
+            android:text="Exemplo de status do usuario"
+            android:textSize="13sp" />
+
+
+
 </RelativeLayout>
