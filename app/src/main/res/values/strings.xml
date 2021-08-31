@@ -74,5 +74,11 @@
 
 
     <string name="status_padrao">Hey there! I am using WhatsApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- Contatos App-->
+    <string name="pesquisar">Pesquisar...</string>
 
 </resources>

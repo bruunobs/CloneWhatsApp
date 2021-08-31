@@ -4,10 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.app.clonewhatsapp.fragment.CameraFragment
-import com.app.clonewhatsapp.fragment.ChamadasFragment
-import com.app.clonewhatsapp.fragment.ConversasFragment
-import com.app.clonewhatsapp.fragment.StatusFragment
+import com.app.clonewhatsapp.fragment.*
 
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager,lifecycle)  {

@@ -8,6 +8,7 @@
         android:title="@string/pesquisar_menu_principal"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_pesquisa_branco"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
 
     <item

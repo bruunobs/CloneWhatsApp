@@ -69,8 +69,8 @@ class PerfilActivity : AppCompatActivity() {
 
         binding.fabFotoPerfil.setOnClickListener {
 
-            //var bottomSheet = BottomSheet()
-            //bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
+            var bottomSheet = Bottom_sheet()
+            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
             showBottomSheetPickPhoto()
 //            val tirarFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //

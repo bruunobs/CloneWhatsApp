@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.app.clonewhatsapp.ContatosActivity
+import androidx.fragment.app.FragmentActivity
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.FragmentConversasBinding
+import androidx.fragment.app.FragmentTransaction
+import com.app.clonewhatsapp.ContatosActivity
 
 
 class ConversasFragment : Fragment() {
@@ -21,6 +23,8 @@ class ConversasFragment : Fragment() {
 
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,8 +35,21 @@ class ConversasFragment : Fragment() {
         binding = FragmentConversasBinding.inflate(inflater, container, false)
 
         binding.fabContatos.setOnClickListener {
-            val intent = Intent(requireContext(), ContatosActivity::class.java)
+            val intent = Intent(context, ContatosActivity::class.java)
             startActivity(intent)
+//            val intent = Intent (getActivity(), ContatosFragment::class.java)
+//            getActivity()?.startActivity(intent)
+
+
+//            val contatosFragment: Fragment = ContatosFragment()
+//            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+//            transaction.replace(R.id.fragment_conversas,
+//                contatosFragment
+//            ) // give your fragment container id in first parameter
+//            transaction.addToBackStack(null) // if written, this transaction will be added to backstack
+//            transaction.commit()
+
+
 
         }
 
@@ -41,6 +58,7 @@ class ConversasFragment : Fragment() {
 
 
     }
+
 
 
 }
