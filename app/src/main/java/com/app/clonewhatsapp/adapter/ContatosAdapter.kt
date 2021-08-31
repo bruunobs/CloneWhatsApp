@@ -30,8 +30,7 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        val layoutInflater = LayoutInflater.from(parent.context)
-//        val listItem = layoutInflater.inflate(R.layout.activity_contatos,parent,false)
+
         val view: View = LayoutInflater.from(mContest).inflate(R.layout.adapter_contatos,parent,false)
 
         return ContatosAdapter.ViewHolder(view)

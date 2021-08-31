@@ -12,8 +12,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.clonewhatsapp.adapter.ContatosAdapter
-import com.app.clonewhatsapp.databinding.ActivityCadastroBinding
-import com.app.clonewhatsapp.databinding.ActivityConfiguracoesBinding
 import com.app.clonewhatsapp.databinding.ActivityContatosBinding
 import com.app.clonewhatsapp.fragment.BuscaFragment
 import com.app.clonewhatsapp.model.Usuario
@@ -53,23 +51,6 @@ class ContatosActivity : AppCompatActivity() {
         toolbar.title = ""
         setSupportActionBar(toolbar)
 
-//        buscaEditText = findViewById(R.id.buscaContatos)
-//
-//        buscaEditText!!.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onTextChanged(cs: CharSequence?, start: Int, before: Int, count: Int) {
-//                BuscaUsuarios(cs.toString().toLowerCase())
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-
         binding.backArrowContatos.setOnClickListener {
             onBackPressed()
             finish()
@@ -95,14 +76,17 @@ class ContatosActivity : AppCompatActivity() {
 
         val item = menu!!.findItem(R.id.menuPesquisa)
         val searchView = item.actionView as SearchView
-        //searchView.queryHint = "Pesquisar..."
+        searchView.queryHint = "Pesquisar..."
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                contatosAdapter!!.filter.filter(newText.toString().toLowerCase())
+
+
                 return true
             }
 
@@ -113,26 +97,6 @@ class ContatosActivity : AppCompatActivity() {
     }
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item.itemId){
-//
-//            R.id.menuPesquisa -> {
-//
-
-//                var bottomSheet = BuscaFragment()
-//                bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
-//                var buscaFragment = BuscaFragment()
-//                supportFragmentManager.beginTransaction().add(R.id.contatos,buscaFragment)
-//                    .commit()
-//                var buscaFragment = BuscaFragment()
-//                buscaFragment.startActivity(this,BuscaFragment::class.java)
-
-//            }
-//
-//
-//        }
-        return super.onOptionsItemSelected(item)
-    }
 
     private fun recuperarUsuarios() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
