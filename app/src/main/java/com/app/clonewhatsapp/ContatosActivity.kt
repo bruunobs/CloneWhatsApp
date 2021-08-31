@@ -43,13 +43,11 @@ class ContatosActivity : AppCompatActivity() {
 
 
         toolbar = findViewById(R.id.toolbarPrincipal)
-        toolbar.title = ""
+        toolbar.title = "Contatos"
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        binding.backArrowContatos.setOnClickListener {
-            onBackPressed()
-            finish()
-        }
 
     }
 
@@ -125,6 +123,11 @@ class ContatosActivity : AppCompatActivity() {
         })
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 

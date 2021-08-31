@@ -16,29 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/back_arrow_contatos"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/ic_back_arrow"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/contatos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="@string/contatos"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/include"
-        app:layout_constraintStart_toEndOf="@+id/back_arrow_contatos"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewListaContatos"
