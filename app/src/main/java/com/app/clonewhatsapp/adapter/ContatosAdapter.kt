@@ -80,7 +80,7 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
 
                     for (item in listaContatosFilter)
                     {
-                     if(item.nome.contains(cs)){
+                     if(item.nome.contains(cs.toLowerCase())){
                          itemModal.add(item)
                      }
                     }
@@ -89,7 +89,7 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
                     filterResult.values = itemModal
                 }
 
-                return filterResult
+            return filterResult
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {

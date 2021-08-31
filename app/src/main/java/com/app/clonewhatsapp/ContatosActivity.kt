@@ -1,11 +1,9 @@
 package com.app.clonewhatsapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 
 import androidx.appcompat.widget.Toolbar
@@ -13,9 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.clonewhatsapp.adapter.ContatosAdapter
 import com.app.clonewhatsapp.databinding.ActivityContatosBinding
-import com.app.clonewhatsapp.fragment.BuscaFragment
 import com.app.clonewhatsapp.model.Usuario
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -39,7 +35,6 @@ class ContatosActivity : AppCompatActivity() {
 
         binding = ActivityContatosBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         recyclerView = binding.recyclerViewListaContatos
         recyclerView!!.setHasFixedSize(true)
@@ -80,17 +75,19 @@ class ContatosActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
+                //contatosAdapter!!.filter.filter(query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                contatosAdapter!!.filter.filter(newText.toString().toLowerCase())
+                contatosAdapter!!.filter.filter(newText)
 
 
                 return true
             }
 
         })
+
 
         return super.onCreateOptionsMenu(menu)
 
@@ -100,7 +97,7 @@ class ContatosActivity : AppCompatActivity() {
 
     private fun recuperarUsuarios() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        var ref = FirebaseDatabase.getInstance().getReference("/usuarios")
+        var ref = FirebaseDatabase.getInstance().getReference("/usuarios/")
 
         valueEventListenerContatos = ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -108,11 +105,13 @@ class ContatosActivity : AppCompatActivity() {
                 (usuarios as ArrayList<Usuario>).clear()
                 for(snapshot in snapshot.children)
                 {
-                    var usuario: Usuario? = snapshot.getValue(Usuario::class.java)!!
+                    var usuario = snapshot.getValue(Usuario::class.java)!!
+
                     if(!(usuario!!.uid).equals(uid))
                     {
                         (usuarios as ArrayList<Usuario>).add(usuario)
                     }
+
                 }
                 contatosAdapter = ContatosAdapter(this@ContatosActivity,usuarios!!,false)
                 recyclerView!!.adapter = contatosAdapter
@@ -128,36 +127,9 @@ class ContatosActivity : AppCompatActivity() {
 
     }
 
-    private fun BuscaUsuarios(str: String){
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        var queryUsuarios = FirebaseDatabase.getInstance().getReference("/usuarios").orderByChild("nome")
-            .startAt(str).endAt(str + "\uf8ff")
-
-        queryUsuarios.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                (usuarios as ArrayList<Usuario>).clear()
-
-                for(snapshot in snapshot.children)
-                {
-                    var usuario: Usuario? = snapshot.getValue(Usuario::class.java)!!
-
-                    if(!(usuario!!.uid).equals(uid))
-                    {
-                        (usuarios as ArrayList<Usuario>).add(usuario)
-                    }
-                }
-                contatosAdapter = ContatosAdapter(this@ContatosActivity,usuarios!!,false)
-                recyclerView!!.adapter = contatosAdapter
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-    }
 
 
 }
+
+
+
