@@ -1,6 +1,7 @@
 package com.app.clonewhatsapp.model
 
 import com.google.firebase.database.FirebaseDatabase
+import java.io.Serializable
 
 class Usuario(
     var uid: String = "",

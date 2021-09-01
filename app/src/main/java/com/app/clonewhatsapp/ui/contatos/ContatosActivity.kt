@@ -16,6 +16,7 @@ import com.app.clonewhatsapp.adapter.ContatosAdapter
 import com.app.clonewhatsapp.databinding.ActivityContatosBinding
 import com.app.clonewhatsapp.model.Usuario
 import com.app.clonewhatsapp.ui.chat.ChatActivity
+import com.app.clonewhatsapp.ui.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -121,8 +122,16 @@ class ContatosActivity : AppCompatActivity() {
                 contatosAdapter!!.setOnItemClickListener(object : ContatosAdapter.onItemClickListener{
                     override fun onItemClick(position: Int) {
 
+//                        var listaContatos = snapshot.getValue(Usuario::class.java)!!
+//                        val intent =
+//                            Intent(this@ContatosActivity, ChatActivity::class.java)
+//                        intent.flags =
+//                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        intent.putExtra("chatContato",listaContatos.nome)
+//                        //intent.putExtra("email_id", ref)
+//                        startActivity(intent)
+//                        finish()
                         startActivity(Intent(this@ContatosActivity,ChatActivity::class.java))
-                        Toast.makeText(this@ContatosActivity,"Item $position clicado", Toast.LENGTH_SHORT).show()
                         finish()
                     }
 
@@ -142,10 +151,6 @@ class ContatosActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    fun itemClicked(usuarios: List<Usuario>?){
-
     }
 
 

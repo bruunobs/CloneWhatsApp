@@ -10,8 +10,6 @@
     tools:context=".fragment.StatusFragment">
 
 
-
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -71,8 +69,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/imagem_perfil_contatos"
                     android:text="@string/status"
                     android:textColor="@color/black"
@@ -105,14 +103,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="12dp"
+                android:fontFamily="@font/heebo_medium"
                 android:gravity="center_vertical"
                 android:padding="2dp"
-                android:textSize="13dp"
-                android:fontFamily="@font/heebo_medium"
                 android:text="@string/atualizacoes_recentes_status"
+                android:textSize="13dp"
 
                 />
-
 
 
         </LinearLayout>
@@ -156,6 +153,15 @@
         app:layout_goneMarginEnd="16dp"
         app:tint="@color/fab_status"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
