@@ -13,10 +13,35 @@
         <entry key="..\:/Android/Projetos/CloneWhatsApp/app/src/main/res/layout/fragment_status.xml" value="0.35260416666666666" />
         <entry key="..\:/Android/Projetos/CloneWhatsApp/app/src/main/res/menu/menu_principal.xml" value="0.36102564102564105" />
         <entry key="..\:/Android/Projetos/CloneWhatsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/fundo_mensagem_chat.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic__camera_white.xml" value="0.3769230769230769" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_add_status.xml" value="0.3828125" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_attach_file_chat.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_back_arrow.xml" value="0.3769230769230769" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_back_arrow_contatos.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_add_ic_call_24.xml" value="0.3769230769230769" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.3828125" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_chat_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_data_usage.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_help.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_baseline_qr_code_24.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_camera_chat.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_chat_config.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_create_perfil.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_emotions_chat.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_info.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_invite_friend.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_key.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_notifications.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_pesquisa_branco.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_phone.xml" value="0.3828125" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_cadastro.xml" value="0.36666666666666664" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_chat.xml" value="0.33" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_configuracoes.xml" value="0.33" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_contatos.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
@@ -31,7 +56,7 @@
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/fragment_chamadas.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/fragment_contatos.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/fragment_conversas.xml" value="0.36666666666666664" />
-        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/fragment_status.xml" value="0.5" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/fragment_status.xml" value="0.6728452270620945" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/menu/menu_contatos.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/menu/menu_principal.xml" value="0.36666666666666664" />

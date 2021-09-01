@@ -43,7 +43,7 @@
                     android:id="@+id/Imagem_Perfil"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:contentDescription="@string/perssoa_perfil"
+                    android:contentDescription="@string/persoa_perfil"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher" />
 

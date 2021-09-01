@@ -30,8 +30,8 @@
 
     <!-- Configuracao App-->
     <string name="config">Configurações</string>
-    <string name="perssoa_perfil">Foto do perfil da pessoa</string>
-    <string name="nome_pessoa_perfil">Bruno</string>
+    <string name="persoa_perfil">Foto do perfil da pessoa</string>
+    <string name="nome_pessoa_perfil">Nome</string>
     <string name="text_status">Obrigado por mais um dia</string>
     <string name="conta_config">Conta</string>
     <string name="conta_config_desc">Privacidade, segurança, mudar número</string>
@@ -71,10 +71,7 @@
 
 
     <!-- Pessoas App-->
-
-
     <string name="status_padrao">Hey there! I am using WhatsApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
@@ -87,5 +84,10 @@
     <string name="status">Meu status</string>
     <string name="status_atualizar">Toque para atualizar seu status</string>
     <string name="atualizacoes_recentes_status">Atualizações recentes</string>
+
+    <!-- Chat App-->
+    <string name="chat_foto">Foto do perfil da pessoa</string>
+    <string name="nome_pessoa_chat">Nome</string>
+    <string name="hint_chat">Digite uma mensagem..</string>
 
 </resources>

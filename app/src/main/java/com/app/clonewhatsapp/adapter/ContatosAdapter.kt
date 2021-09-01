@@ -21,6 +21,8 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
     private var listaContatosFilter: List<Usuario>
     private var isChatCheck: Boolean
 
+    private lateinit var mListenr: onItemClickListener
+
     init {
         this.mContest = mContest
         this.listaContatos = listaContatos
@@ -29,12 +31,24 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
         notifyDataSetChanged()
     }
 
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int)
+
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+
+        mListenr = listener
+
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view: View = LayoutInflater.from(mContest).inflate(R.layout.adapter_contatos,parent,false)
 
-        return ContatosAdapter.ViewHolder(view)
+        return ContatosAdapter.ViewHolder(view,mListenr)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
@@ -54,13 +68,16 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
 
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView){
 
         var nome: TextView
         var status: TextView
         var profileImage: CircleImageView
 
         init {
+            itemView.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
             nome = itemView.findViewById(R.id.nome_contatos)
             status = itemView.findViewById(R.id.status_contatos)
             profileImage = itemView.findViewById(R.id.imagem_perfil_contatos)

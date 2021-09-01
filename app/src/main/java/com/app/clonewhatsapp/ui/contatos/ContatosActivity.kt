@@ -1,9 +1,11 @@
 package com.app.clonewhatsapp.ui.contatos
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 
 import androidx.appcompat.widget.Toolbar
@@ -13,6 +15,7 @@ import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.adapter.ContatosAdapter
 import com.app.clonewhatsapp.databinding.ActivityContatosBinding
 import com.app.clonewhatsapp.model.Usuario
+import com.app.clonewhatsapp.ui.chat.ChatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -115,6 +118,16 @@ class ContatosActivity : AppCompatActivity() {
                 contatosAdapter = ContatosAdapter(this@ContatosActivity,usuarios!!,false)
                 recyclerView!!.adapter = contatosAdapter
 
+                contatosAdapter!!.setOnItemClickListener(object : ContatosAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+
+                        startActivity(Intent(this@ContatosActivity,ChatActivity::class.java))
+                        Toast.makeText(this@ContatosActivity,"Item $position clicado", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+
+                })
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -129,6 +142,10 @@ class ContatosActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    fun itemClicked(usuarios: List<Usuario>?){
+
     }
 
 
