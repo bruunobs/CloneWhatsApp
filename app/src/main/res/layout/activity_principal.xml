@@ -9,7 +9,7 @@
     android:backgroundTint="@color/white"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".principal.PrincipalActivity"
+    tools:context=".ui.principal.PrincipalActivity"
     >
 
     <include layout="@layout/toolbar" />

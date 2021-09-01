@@ -1,4 +1,4 @@
-package com.app.clonewhatsapp.principal
+package com.app.clonewhatsapp.ui.principal
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,10 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
-import com.app.clonewhatsapp.ConfiguracoesActivity
+import com.app.clonewhatsapp.ui.configuracao.ConfiguracoesActivity
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.adapter.ViewPagerAdapter
-import com.app.clonewhatsapp.login.LoginActivity
+import com.app.clonewhatsapp.ui.login.LoginActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
@@ -74,7 +74,7 @@ class PrincipalActivity : AppCompatActivity() {
 
             }
             R.id.menuConfiguracoes -> {
-                startActivity(Intent(this,ConfiguracoesActivity::class.java))
+                startActivity(Intent(this, ConfiguracoesActivity::class.java))
             }
 
         }

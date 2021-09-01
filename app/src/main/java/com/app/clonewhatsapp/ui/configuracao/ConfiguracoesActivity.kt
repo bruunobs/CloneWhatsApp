@@ -1,13 +1,14 @@
-package com.app.clonewhatsapp
+package com.app.clonewhatsapp.ui.configuracao
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.widget.Toolbar
+import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityConfiguracoesBinding
 import com.app.clonewhatsapp.model.Usuario
-import com.app.clonewhatsapp.profile.PerfilActivity
+import com.app.clonewhatsapp.ui.perfil.PerfilActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

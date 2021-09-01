@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import com.app.clonewhatsapp.databinding.ActivityMainBinding
-import com.app.clonewhatsapp.login.LoginActivity
-import com.app.clonewhatsapp.principal.PrincipalActivity
+import com.app.clonewhatsapp.ui.login.LoginActivity
+import com.app.clonewhatsapp.ui.principal.PrincipalActivity
 import com.google.firebase.auth.FirebaseAuth
 import java.lang.Boolean
 
@@ -30,13 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         val user = auth.currentUser
         if (user != null){
-            startActivity(Intent(this@MainActivity,PrincipalActivity::class.java))
+            startActivity(Intent(this@MainActivity, PrincipalActivity::class.java))
             finish()
         }
 
 
         binding.buttonConcordo.setOnClickListener {
-            val intent = Intent(this@MainActivity,LoginActivity::class.java)
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             editor.putBoolean(prevStarted, Boolean.TRUE);
             editor.apply();
         } else {
-            startActivity(Intent(this@MainActivity,LoginActivity::class.java))
+            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
             finish()
         }
     }

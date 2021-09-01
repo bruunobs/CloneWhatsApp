@@ -1,20 +1,12 @@
-package com.app.clonewhatsapp.profile
+package com.app.clonewhatsapp.ui.perfil
 
 import android.content.*
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.hardware.Camera
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
-import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.FileProvider
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityPerfilBinding
 import com.app.clonewhatsapp.model.Usuario
@@ -25,9 +17,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import java.io.*
 import java.util.*
-import com.google.firebase.auth.UserProfileChangeRequest
-import java.lang.RuntimeException
-import java.text.SimpleDateFormat
 
 
 class PerfilActivity : AppCompatActivity() {
@@ -69,8 +58,8 @@ class PerfilActivity : AppCompatActivity() {
 
         binding.fabFotoPerfil.setOnClickListener {
 
-            var bottomSheet = Bottom_sheet()
-            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
+//            var bottomSheet = Bottom_sheet()
+//            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
             showBottomSheetPickPhoto()
 //            val tirarFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //

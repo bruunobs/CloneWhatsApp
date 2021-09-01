@@ -1,17 +1,12 @@
-package com.app.clonewhatsapp.profile
+package com.app.clonewhatsapp.ui.perfil
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.BottomSheetPickBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.content.Intent
-import android.provider.MediaStore
-import android.util.Log
-import android.widget.Toast
 
 
 class Bottom_sheet : BottomSheetDialogFragment(){

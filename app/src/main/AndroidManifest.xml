@@ -18,16 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CloneWhatsApp" >
         <activity
-            android:name=".profile.PerfilActivity"
+            android:name=".ui.perfil.PerfilActivity"
             android:exported="true" />
         <activity
-            android:name=".ContatosActivity"
+            android:name=".ui.contatos.ContatosActivity"
             android:exported="true" />
         <activity
-            android:name=".ConfiguracoesActivity"
+            android:name=".ui.configuracao.ConfiguracoesActivity"
             android:exported="true"
             android:theme="@style/Theme.CloneWhatsApp" />
-        <activity android:name=".principal.PrincipalActivity" >
+        <activity android:name=".ui.principal.PrincipalActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,11 +35,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".cadastro.CadastroActivity"
+            android:name=".ui.cadastro.CadastroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TemaLogin" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TemaLogin" />
         <activity android:name=".MainActivity" />

@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentActivity
-import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.FragmentConversasBinding
-import androidx.fragment.app.FragmentTransaction
-import com.app.clonewhatsapp.ContatosActivity
+import com.app.clonewhatsapp.ui.contatos.ContatosActivity
 
 
 class ConversasFragment : Fragment() {

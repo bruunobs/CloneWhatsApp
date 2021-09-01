@@ -7,7 +7,7 @@
 
     android:backgroundTint="@color/white"
     android:background="@color/white"
-    tools:context=".cadastro.CadastroActivity">
+    tools:context=".ui.cadastro.CadastroActivity">
 
     <ImageView
         android:id="@+id/imageView3"

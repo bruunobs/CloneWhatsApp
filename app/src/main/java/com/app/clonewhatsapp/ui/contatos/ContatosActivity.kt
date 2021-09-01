@@ -1,4 +1,4 @@
-package com.app.clonewhatsapp
+package com.app.clonewhatsapp.ui.contatos
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.adapter.ContatosAdapter
 import com.app.clonewhatsapp.databinding.ActivityContatosBinding
 import com.app.clonewhatsapp.model.Usuario

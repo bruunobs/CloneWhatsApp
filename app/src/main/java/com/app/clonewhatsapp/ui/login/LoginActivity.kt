@@ -1,4 +1,4 @@
-package com.app.clonewhatsapp.login
+package com.app.clonewhatsapp.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,9 +7,9 @@ import android.text.TextUtils
 import android.widget.Toast
 import com.app.clonewhatsapp.MainActivity
 import com.app.clonewhatsapp.R
-import com.app.clonewhatsapp.cadastro.CadastroActivity
+import com.app.clonewhatsapp.ui.cadastro.CadastroActivity
 import com.app.clonewhatsapp.databinding.ActivityLoginBinding
-import com.app.clonewhatsapp.principal.PrincipalActivity
+import com.app.clonewhatsapp.ui.principal.PrincipalActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException

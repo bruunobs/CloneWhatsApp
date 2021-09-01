@@ -1,4 +1,4 @@
-package com.app.clonewhatsapp.cadastro
+package com.app.clonewhatsapp.ui.cadastro
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.app.clonewhatsapp.databinding.ActivityCadastroBinding
-import com.app.clonewhatsapp.login.LoginActivity
+import com.app.clonewhatsapp.ui.login.LoginActivity
 import com.app.clonewhatsapp.model.Usuario
 import com.google.firebase.auth.*
 import com.google.firebase.database.*

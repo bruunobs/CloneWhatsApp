@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:backgroundTint="@color/white"
-    tools:context=".ConfiguracoesActivity">
+    tools:context=".ui.configuracao.ConfiguracoesActivity">
 
     <include
         android:id="@+id/include"
