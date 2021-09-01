@@ -28,15 +28,13 @@ class ConfiguracoesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         toolbar = findViewById(R.id.toolbarPrincipal)
-        toolbar.title = ""
+        toolbar.title = "Configuracões"
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         getData()
 
-        binding.backArrow.setOnClickListener {
-            onBackPressed()
-            finish()
-        }
 
         binding.ImagemPerfil.setOnClickListener {
             startActivity(Intent(this@ConfiguracoesActivity, PerfilActivity::class.java))
@@ -108,6 +106,9 @@ class ConfiguracoesActivity : AppCompatActivity() {
     }
 
 
-
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
 }

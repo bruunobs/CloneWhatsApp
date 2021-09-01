@@ -41,8 +41,10 @@ class PerfilActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         toolbar = findViewById(R.id.toolbarPrincipal)
-        toolbar.title = ""
+        toolbar.title = "Perfil"
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         getData()
         //var bottomSheet  = Bottom_sheet()
@@ -51,10 +53,6 @@ class PerfilActivity : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
         dataBase = FirebaseDatabase.getInstance().reference
 
-        binding.backArrowPerfil.setOnClickListener {
-            onBackPressed()
-            finish()
-        }
 
         binding.fabFotoPerfil.setOnClickListener {
 
@@ -276,7 +274,10 @@ class PerfilActivity : AppCompatActivity() {
     }
 
 
-
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 
 }
 
