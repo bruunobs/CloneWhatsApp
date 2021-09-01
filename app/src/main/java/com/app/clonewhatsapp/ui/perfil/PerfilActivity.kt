@@ -53,6 +53,11 @@ class PerfilActivity : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
         dataBase = FirebaseDatabase.getInstance().reference
 
+        binding.LayoutNome.setOnClickListener {
+            var bottomSheetNomeFragment = BottomSheetNomeFragment()
+            bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetDialog")
+        }
+
 
         binding.fabFotoPerfil.setOnClickListener {
 

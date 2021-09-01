@@ -25,6 +25,14 @@ class BottomSheetNomeFragment : BottomSheetDialogFragment(){
         // Inflate the layout for this fragment
         binding = BottomSheetNomeBinding.inflate(inflater,container,false)
 
+        binding.buttonSalvar.setOnClickListener {
+            dismiss()
+        }
+
+        binding.buttonCancelar.setOnClickListener {
+            dismiss()
+        }
+
         return binding.root
     }
 

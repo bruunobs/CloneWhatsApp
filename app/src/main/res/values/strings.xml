@@ -68,6 +68,7 @@
     <string name="camera">Camera</string>
     <string name="galeria">Galeria</string>
     <string name="foto_do_perfil">Foto do Perfil</string>
+    <string name="hint_nome_perfil">Insira seu nome</string>
 
 
     <!-- Pessoas App-->
