@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.content.Intent
 
 
-class Bottom_sheet : BottomSheetDialogFragment(){
+class BottomSheetImagem : BottomSheetDialogFragment(){
 
     lateinit var binding: BottomSheetPickBinding
 
