@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.clonewhatsapp"
-    >
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-feature android:name="android.hardware.camera"
-        android:required="true"/>
+    package="com.app.clonewhatsapp">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +17,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_whatsapp_logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CloneWhatsApp" >
+        android:theme="@style/Theme.CloneWhatsApp">
+        <activity
+            android:name=".ui.chat.ChatActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.perfil.PerfilActivity"
             android:exported="true" />
@@ -27,7 +31,7 @@
             android:name=".ui.configuracao.ConfiguracoesActivity"
             android:exported="true"
             android:theme="@style/Theme.CloneWhatsApp" />
-        <activity android:name=".ui.principal.PrincipalActivity" >
+        <activity android:name=".ui.principal.PrincipalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +51,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

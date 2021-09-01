@@ -80,5 +80,12 @@
 
     <!-- Contatos App-->
     <string name="pesquisar">Pesquisar...</string>
+    <string name="status_contato">Exemplo de status do usuario</string>
+    <string name="nome_contato">Nome Usuario</string>
+
+    <!-- Status App-->
+    <string name="status">Meu status</string>
+    <string name="status_atualizar">Toque para atualizar seu status</string>
+    <string name="atualizacoes_recentes_status">Atualizações recentes</string>
 
 </resources>

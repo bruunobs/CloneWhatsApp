@@ -22,20 +22,22 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/imagem_perfil_contatos"
-            android:text="Nome Usuario"
+            android:text="@string/nome_contato"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/status_contatos"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
             android:layout_below="@+id/nome_contatos"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="3dp"
             android:layout_toRightOf="@id/imagem_perfil_contatos"
-            android:text="Exemplo de status do usuario"
+            android:text="@string/status_contato"
             android:textSize="13sp" />
 
 
