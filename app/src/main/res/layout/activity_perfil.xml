@@ -100,10 +100,11 @@
                     <TextView
                         android:id="@+id/editTextNome"
                         android:layout_width="match_parent"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:minHeight="30dp"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        android:minHeight="30dp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -155,6 +156,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:gravity="center"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
@@ -182,20 +184,24 @@
                         android:id="@+id/textRecado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginTop="8dp"
                         android:text="@string/recado" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/editTextRecado"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPersonName"
-                        tools:ignore="SpeakableTextPresentCheck" />
+                        android:layout_height="wrap_content"
+
+                        android:textSize="16sp"
+                        android:minHeight="30dp"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
@@ -226,6 +232,7 @@
         <LinearLayout
             android:id="@+id/LayoutNumero"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="60dp"
             android:orientation="vertical">
 
@@ -258,13 +265,16 @@
                     <TextView
                         android:id="@+id/textTelefone"
                         android:layout_width="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:textSize="16sp"
                         android:layout_height="wrap_content"
                         android:text="@string/telefone" />
 
                     <EditText
                         android:id="@+id/EditTextTelefone"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
                         android:background="@android:color/transparent"
                         android:inputType="number"
                         tools:ignore="SpeakableTextPresentCheck" />

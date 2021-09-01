@@ -16,6 +16,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): 
         return when(position){
             0 ->{
                 CameraFragment()
+
             }
             1 ->{
                 ConversasFragment()

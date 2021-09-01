@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityPerfilBinding
@@ -29,6 +30,7 @@ class PerfilActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     lateinit var dataBase: DatabaseReference
 
+
     companion object {
         const val IMAGE_REQUEST = 1
         const val CAMERA_REQUEST = 777
@@ -46,8 +48,8 @@ class PerfilActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+
         getData()
-        //var bottomSheet  = Bottom_sheet()
 
         auth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
@@ -56,6 +58,15 @@ class PerfilActivity : AppCompatActivity() {
         binding.LayoutNome.setOnClickListener {
             var bottomSheetNomeFragment = BottomSheetNomeFragment()
             bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetDialog")
+
+
+        }
+        binding.LayoutRecado.setOnClickListener {
+            var bottomSheetNomeFragment = BottomSheetNomeFragment()
+            bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetDialog")
+            //findViewById<TextView>(R.id.insiraNome).setText("Adicionar recado")
+
+
         }
 
 

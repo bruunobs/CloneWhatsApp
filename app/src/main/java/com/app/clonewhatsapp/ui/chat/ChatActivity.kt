@@ -2,11 +2,13 @@ package com.app.clonewhatsapp.ui.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityChatBinding
 import com.app.clonewhatsapp.model.Usuario
 import com.app.clonewhatsapp.ui.contatos.ContatosActivity
+import com.google.android.material.tabs.TabLayout
 
 class ChatActivity : AppCompatActivity() {
 
@@ -28,6 +30,7 @@ class ChatActivity : AppCompatActivity() {
 
 //        val ss:String = intent.getStringExtra("chatContato").toString()
 //        binding.nomeChat.text = ss
+
 
 
     }

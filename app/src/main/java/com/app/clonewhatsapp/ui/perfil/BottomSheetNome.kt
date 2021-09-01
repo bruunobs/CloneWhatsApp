@@ -30,6 +30,7 @@ class BottomSheetNomeFragment : BottomSheetDialogFragment(){
         }
 
         binding.buttonCancelar.setOnClickListener {
+
             dismiss()
         }
 

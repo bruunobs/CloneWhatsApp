@@ -47,6 +47,7 @@
                     android:layout_marginTop="40dp"
                     android:background="@drawable/ic_add_status"
                     android:backgroundTint="@color/corAccent"
+                    app:cardBackgroundColor="@color/corAccent"
                     app:cardCornerRadius="30dp">
 
                     <ImageView
