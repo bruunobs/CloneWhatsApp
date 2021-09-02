@@ -11,7 +11,6 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.R
@@ -226,20 +225,21 @@ class PerfilActivity : AppCompatActivity() {
         var uid = FirebaseAuth.getInstance().uid
         //val uid = UUID.randomUUID().toString()
 
-//        var usuario = Usuario(uid!!,binding.textNome.toString(),profileImageUrl,binding.EditTextTelefone.text.toString(),
-//        binding.textRecado.text.toString())
-
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
+
+        var usuario = Usuario(uid.toString(),binding.editTextNome.text.toString(),profileImageUrl,binding.EditTextTelefone.text.toString(),
+        binding.editTextRecado.text.toString())
+
 
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                var usuario = snapshot.getValue(Usuario::class.java)!!
+                 //usuario: Usuario = snapshot.getValue(Usuario::class.java)!!
 
-                binding.textNome.text = usuario?.nome
-                binding.EditTextTelefone.text = usuario?.numero
-                binding.textRecado.text = usuario?.status
+                binding.editTextNome.setText(usuario?.nome)
+                binding.EditTextTelefone.setText(usuario?.numero)
+                binding.editTextRecado.setText(usuario?.status)
 
 
             }
@@ -262,10 +262,9 @@ class PerfilActivity : AppCompatActivity() {
         if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK &&
             data != null && data?.data!! != null)
             {
-                data?.let {
-                    imageUri = data.data!!
-                    uploadImage()
-                }
+                imageUri = data?.data!!
+                uploadImage()
+
 
             }
 
