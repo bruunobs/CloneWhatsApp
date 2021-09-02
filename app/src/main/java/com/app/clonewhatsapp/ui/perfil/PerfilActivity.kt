@@ -1,12 +1,18 @@
 package com.app.clonewhatsapp.ui.perfil
 
+import android.Manifest
+import android.app.AlertDialog
 import android.content.*
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityPerfilBinding
@@ -15,6 +21,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.karumi.dexter.listener.single.PermissionListener
 import com.squareup.picasso.Picasso
 import java.io.*
 import java.util.*
@@ -32,8 +46,8 @@ class PerfilActivity : AppCompatActivity() {
 
 
     companion object {
-        const val IMAGE_REQUEST = 1
-        const val CAMERA_REQUEST = 777
+        private const val IMAGE_REQUEST = 1
+        private const val CAMERA_REQUEST = 777
 
     }
 
@@ -66,22 +80,13 @@ class PerfilActivity : AppCompatActivity() {
             bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetDialog")
             //findViewById<TextView>(R.id.insiraNome).setText("Adicionar recado")
 
-
         }
 
 
         binding.fabFotoPerfil.setOnClickListener {
-
-//            var bottomSheet = Bottom_sheet()
-//            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
+            //var bottomSheet = BottomSheetImagem()
+            //bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
             showBottomSheetPickPhoto()
-//            val tirarFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//
-//            if (tirarFoto.resolveActivity(this.packageManager) != null){
-//                startActivityForResult(tirarFoto, CAMERA_REQUEST)
-//            }else{
-//                Toast.makeText(this, "Erro ao abrir a camera", Toast.LENGTH_SHORT).show()
-//            }
 
         }
 
@@ -93,24 +98,69 @@ class PerfilActivity : AppCompatActivity() {
     // ----------------------- Metodos de Click  ------------------------
 
     fun openGaleria() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, IMAGE_REQUEST)
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//        startActivityForResult(intent, IMAGE_REQUEST)
+
+        Dexter.withContext(this@PerfilActivity).withPermission(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+        ).withListener(object : PermissionListener {
+            override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                val intentGaleria = Intent(Intent.ACTION_PICK, MediaStore
+                    .Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(intentGaleria, IMAGE_REQUEST)
+
+            }
+
+            override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                Toast.makeText(this@PerfilActivity,"Você não permitiu o acesso a galeria",
+                    Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?,
+                p1: PermissionToken?) {
+                showRationalDialogForPermissions()
+            }
+
+        }).onSameThread().check()
+
+
     }
 
     private fun openCamera(){
+        Dexter.withContext(this).withPermissions(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            //Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+        ).withListener(object : MultiplePermissionsListener {
+            override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                report?.let {
+                    if(report.areAllPermissionsGranted()){
+                        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                        startActivityForResult(intent, CAMERA_REQUEST)
 
+                    }
+                }
 
+            }
 
-//            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-//                takePictureIntent.resolveActivity(packageManager)?.also {
-//                    startActivityForResult(takePictureIntent, CAMERA_REQUEST)
-//                }
-//            }
+            override fun onPermissionRationaleShouldBeShown(
+                permissions: MutableList<PermissionRequest>?,
+                token: PermissionToken?
+            ) {
+                showRationalDialogForPermissions()
+            }
+
+        }
+
+        ).onSameThread().check()
 
 
     }
+
+
+
 
 
     // ------------------------  Bottom Sheet ----------------------------------
@@ -202,36 +252,34 @@ class PerfilActivity : AppCompatActivity() {
 
         })
 
-
-        //Só deus sabe o que isso faz
-        ref.setValue(usuario)
-            .addOnSuccessListener {
-
-                Log.d("PerfilActivity", "Usuario Salvo")
-            }.addOnFailureListener() {
-
-                Log.d("PerfilActivity", "Erro ao salvar usuario  no banco de dados")
-            }
     }
-
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK &&
-            data != null && data?.data!! != null
-        ) {
-            imageUri = data?.data!!
-            uploadImage()
+            data != null && data?.data!! != null)
+            {
+                data?.let {
+                    imageUri = data.data!!
+                    uploadImage()
+                }
+
+            }
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST)
+            {
+                data?.extras?.let {
+                    val bitmap : Bitmap = data.extras!!.get("data") as Bitmap
+                    binding.ImagemPerfil.setImageBitmap(bitmap)
+                    //uploadImage()
+                }
+
+            }
 
         }
-
-//        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-//            val imageBitmap = data?.extras?.get("data") as Bitmap
-//            binding.ImagemPerfil.setImageBitmap(imageBitmap)
-//
-//        }
 
 
 
@@ -293,6 +341,27 @@ class PerfilActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    private fun showRationalDialogForPermissions(){
+        AlertDialog.Builder(this).setMessage("Voce nao aceitou as permissoes" +
+                "requeridas para usar essa feature").setPositiveButton("Va para configuracoes")
+        {_,_ ->
+            try {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package",packageName,null)
+                intent.data = uri
+                startActivity(intent)
+            }catch (e: ActivityNotFoundException){
+                e.printStackTrace()
+            }
+
+        }
+            .setNegativeButton("Cancelar")
+            {dialog, _ ->
+                dialog.dismiss()
+            }.show()
+
     }
 
 }
