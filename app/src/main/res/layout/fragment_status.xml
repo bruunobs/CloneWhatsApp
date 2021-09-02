@@ -45,8 +45,6 @@
                     android:layout_gravity=""
                     android:layout_marginLeft="42dp"
                     android:layout_marginTop="40dp"
-                    android:background="@drawable/ic_add_status"
-                    android:backgroundTint="@color/corAccent"
                     app:cardBackgroundColor="@color/corAccent"
                     app:cardCornerRadius="30dp">
 
@@ -54,7 +52,8 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_add_status" />
+                        android:src="@drawable/ic_add_status"
+                        app:cardBackgroundColor="@color/corAccent" />
                 </androidx.cardview.widget.CardView>
 
 

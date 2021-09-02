@@ -39,6 +39,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPerfilBinding
     private lateinit var toolbar: Toolbar
     lateinit var imageUri: Uri
+    lateinit var photo: Bitmap
 
     lateinit var storage: FirebaseStorage
     lateinit var auth: FirebaseAuth
@@ -98,18 +99,17 @@ class PerfilActivity : AppCompatActivity() {
     // ----------------------- Metodos de Click  ------------------------
 
     fun openGaleria() {
-//        val intent = Intent()
-//        intent.type = "image/*"
-//        intent.action = Intent.ACTION_GET_CONTENT
-//        startActivityForResult(intent, IMAGE_REQUEST)
-
         Dexter.withContext(this@PerfilActivity).withPermission(
             Manifest.permission.READ_EXTERNAL_STORAGE,
         ).withListener(object : PermissionListener {
             override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                val intentGaleria = Intent(Intent.ACTION_PICK, MediaStore
-                    .Images.Media.EXTERNAL_CONTENT_URI)
-                startActivityForResult(intentGaleria, IMAGE_REQUEST)
+//                val intentGaleria = Intent(Intent.ACTION_PICK, MediaStore
+//                    .Images.Media.EXTERNAL_CONTENT_URI)
+//                startActivityForResult(intentGaleria, IMAGE_REQUEST)
+                val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, IMAGE_REQUEST)
 
             }
 
@@ -215,6 +215,7 @@ class PerfilActivity : AppCompatActivity() {
 
         }
 
+
     }
 
 
@@ -225,8 +226,8 @@ class PerfilActivity : AppCompatActivity() {
         var uid = FirebaseAuth.getInstance().uid
         //val uid = UUID.randomUUID().toString()
 
-        var usuario = Usuario(uid!!, binding.editTextNome.text.toString(),
-            profileImageUrl, binding.textTelefone.text.toString(),binding.editTextRecado.text.toString())
+//        var usuario = Usuario(uid!!,binding.textNome.toString(),profileImageUrl,binding.EditTextTelefone.text.toString(),
+//        binding.textRecado.text.toString())
 
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
 
@@ -234,11 +235,11 @@ class PerfilActivity : AppCompatActivity() {
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                usuario = snapshot.getValue(Usuario::class.java)!!
+                var usuario = snapshot.getValue(Usuario::class.java)!!
 
-                binding.editTextNome.setText(usuario?.nome)
-                binding.EditTextTelefone.setText(usuario?.numero)
-                binding.editTextRecado.setText(usuario?.status)
+                binding.textNome.text = usuario?.nome
+                binding.EditTextTelefone.text = usuario?.numero
+                binding.textRecado.text = usuario?.status
 
 
             }
@@ -268,16 +269,18 @@ class PerfilActivity : AppCompatActivity() {
 
             }
 
-        if (resultCode == RESULT_OK) {
-            if (requestCode == CAMERA_REQUEST)
-            {
+        if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
+
                 data?.extras?.let {
+//                    val stream = ByteArrayOutputStream()
+//                    photo.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+//
+//                    val b = stream.toByteArray()
                     val bitmap : Bitmap = data.extras!!.get("data") as Bitmap
                     binding.ImagemPerfil.setImageBitmap(bitmap)
                     //uploadImage()
                 }
 
-            }
 
         }
 
