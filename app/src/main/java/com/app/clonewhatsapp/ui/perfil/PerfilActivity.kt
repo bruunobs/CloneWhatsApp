@@ -231,7 +231,7 @@ class PerfilActivity : AppCompatActivity() {
         //val uid = UUID.randomUUID().toString()
 
         var usuario = Usuario(uid!!, binding.editTextNome.text.toString(),
-            profileImageUrl, binding.textTelefone.text.toString(),binding.editTextRecado.text.toString())
+            profileImageUrl, binding.EditTextTelefone.text.toString(),binding.editTextRecado.text.toString())
 
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
 
