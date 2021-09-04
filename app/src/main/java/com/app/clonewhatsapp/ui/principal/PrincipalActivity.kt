@@ -43,6 +43,7 @@ class PrincipalActivity : AppCompatActivity() {
             when(position){
                 0->{
                     tab.setIcon(R.drawable.ic_baseline_camera_alt_24)
+                    viewPager2.currentItem = 1
                 }
                 1->{
                     tab.text="CONVERSAS"
