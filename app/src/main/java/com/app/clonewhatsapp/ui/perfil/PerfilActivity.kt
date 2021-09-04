@@ -18,7 +18,9 @@ import com.squareup.picasso.Picasso
 import android.Manifest
 import android.graphics.Bitmap
 import android.provider.MediaStore
+import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -345,6 +347,27 @@ class PerfilActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    private fun showRationalDialogForPermissions(){
+        AlertDialog.Builder(this).setMessage("Voce nao aceitou as permissoes" +
+                "requeridas para usar essa feature").setPositiveButton("Va para configuracoes")
+        {_,_ ->
+            try {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package",packageName,null)
+                intent.data = uri
+                startActivity(intent)
+            }catch (e: ActivityNotFoundException){
+                e.printStackTrace()
+            }
+
+        }
+            .setNegativeButton("Cancelar")
+            {dialog, _ ->
+                dialog.dismiss()
+            }.show()
+
     }
 
 }
