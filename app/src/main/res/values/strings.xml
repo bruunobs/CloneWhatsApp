@@ -81,4 +81,9 @@
     <!-- Contatos App-->
     <string name="pesquisar">Pesquisar...</string>
 
+    <!-- Status App-->
+    <string name="meu_status">Meu status</string>
+    <string name="atualizar_status">Toque para atualizar seu status</string>
+    <string name="atualizacoes_vistas">Atualizações vistas</string>
+
 </resources>
