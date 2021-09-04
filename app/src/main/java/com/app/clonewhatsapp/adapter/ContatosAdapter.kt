@@ -99,7 +99,7 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
 
                     for (item in listaContatosFilter)
                     {
-                     if(item.nome.toLowerCase().contains(cs.toLowerCase())){
+                     if(item.nome!!.toLowerCase().contains(cs.toLowerCase())){
                          itemModal.add(item)
                      }
                     }

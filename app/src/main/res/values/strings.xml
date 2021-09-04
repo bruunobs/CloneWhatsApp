@@ -71,8 +71,8 @@
     <string name="hint_nome_perfil">Insira seu nome</string>
 
 
-    <!-- Pessoas App-->
 
+    <!-- Pessoas App-->
 
     <string name="status_padrao">Hey there! I am using WhatsApp</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -81,6 +81,8 @@
 
     <!-- Contatos App-->
     <string name="pesquisar">Pesquisar...</string>
+    <string name="nome_contato">Nome</string>
+    <string name="status_contato">Status contato</string>
 
     <!-- Status App-->
     <string name="meu_status">Meu status</string>
