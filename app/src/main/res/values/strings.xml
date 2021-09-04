@@ -30,7 +30,7 @@
 
     <!-- Configuracao App-->
     <string name="config">Configurações</string>
-    <string name="persoa_perfil">Foto do perfil da pessoa</string>
+    <string name="pessoa_perfil">Foto do perfil da pessoa</string>
     <string name="nome_pessoa_perfil">Nome</string>
     <string name="text_status">Obrigado por mais um dia</string>
     <string name="conta_config">Conta</string>
@@ -72,23 +72,25 @@
 
 
     <!-- Pessoas App-->
+
+
     <string name="status_padrao">Hey there! I am using WhatsApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!-- Contatos App-->
     <string name="pesquisar">Pesquisar...</string>
-    <string name="status_contato">Exemplo de status do usuario</string>
-    <string name="nome_contato">Nome Usuario</string>
 
     <!-- Status App-->
-    <string name="status">Meu status</string>
-    <string name="status_atualizar">Toque para atualizar seu status</string>
-    <string name="atualizacoes_recentes_status">Atualizações recentes</string>
+    <string name="meu_status">Meu status</string>
+    <string name="atualizar_status">Toque para atualizar seu status</string>
+    <string name="atualizacoes_vistas">Atualizações vistas</string>
 
     <!-- Chat App-->
     <string name="chat_foto">Foto do perfil da pessoa</string>
     <string name="nome_pessoa_chat">Nome</string>
     <string name="hint_chat">Digite uma mensagem..</string>
+
 
 </resources>

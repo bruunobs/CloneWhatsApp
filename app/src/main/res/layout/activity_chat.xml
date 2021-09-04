@@ -40,27 +40,27 @@
         app:layout_constraintTop_toTopOf="@+id/Imagem_chat" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageVideoChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
-        android:src="@drawable/ic_videocam_chat"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+        android:src="@drawable/ic_video_chat"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePhoneChat"
+        app:layout_constraintEnd_toStartOf="@+id/imagePhoneChat"
+        app:layout_constraintTop_toTopOf="@+id/imagePhoneChat" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imagePhoneChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:src="@drawable/ic_phone_chat"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageMoreChat"
+        app:layout_constraintEnd_toStartOf="@+id/imageMoreChat"
+        app:layout_constraintTop_toTopOf="@+id/imageMoreChat" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageMoreChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
@@ -122,7 +122,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
-                android:src="@drawable/ic_attach_file_chat" />
+                android:src="@drawable/ic_link_chat" />
 
             <ImageView
                 android:id="@+id/camera_chat"
@@ -154,6 +154,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerViewChat"
         android:layout_width="409dp"
         android:layout_height="608dp"
         android:layout_marginTop="1dp"

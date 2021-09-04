@@ -3,7 +3,9 @@ package com.app.clonewhatsapp.ui.cadastro
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityCadastroBinding
@@ -125,14 +127,22 @@ class CadastroActivity : AppCompatActivity() {
 
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
 
-        ref.child("nome").setValue(binding.editNome.text.toString())
-        ref.child("status").setValue(R.string.status_padrao)
-        ref.child("profileImageUrl").setValue("")
-        ref.child("numero").setValue("+55 85 998888 7777")
-        ref.child("uid").setValue(uid)
+        var usuario = Usuario(uid!!, binding.editNome.text.toString(),
+            "", "","Hey there! I am using WhatsApp")
+
+        ref.setValue(usuario)
+            .addOnSuccessListener {
+
+                Log.d("PerfilActivity", "Usuario Salvo")
+            }.addOnFailureListener() {
+
+                Log.d("PerfilActivity", "Erro ao salvar usuario  no banco de dados")
+            }
 
 
     }
+
+
 
 
 

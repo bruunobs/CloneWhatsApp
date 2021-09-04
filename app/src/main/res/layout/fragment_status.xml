@@ -39,12 +39,14 @@
                     android:layout_marginBottom="5dp"
                     android:src="@mipmap/ic_launcher"></de.hdodenhof.circleimageview.CircleImageView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity=""
                     android:layout_marginLeft="42dp"
                     android:layout_marginTop="40dp"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp"
                     app:cardBackgroundColor="@color/corAccent"
                     app:cardCornerRadius="30dp">
 
@@ -54,7 +56,7 @@
                         android:layout_gravity="center"
                         android:src="@drawable/ic_add_status"
                         app:cardBackgroundColor="@color/corAccent" />
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
 
             </RelativeLayout>
@@ -72,7 +74,7 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="10dp"
                     android:layout_toRightOf="@id/imagem_perfil_contatos"
-                    android:text="@string/status"
+                    android:text="@string/meu_status"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -86,7 +88,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginRight="12dp"
                     android:layout_toRightOf="@id/imagem_perfil_contatos"
-                    android:text="@string/status_atualizar"
+                    android:text="@string/atualizar_status"
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -106,7 +108,7 @@
                 android:fontFamily="@font/heebo_medium"
                 android:gravity="center_vertical"
                 android:padding="2dp"
-                android:text="@string/atualizacoes_recentes_status"
+                android:text="@string/atualizacoes_vistas"
                 android:textSize="13dp"
 
                 />

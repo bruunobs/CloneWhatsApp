@@ -1,17 +1,11 @@
 package com.app.clonewhatsapp.ui.perfil
 
-import android.Manifest
-import android.app.AlertDialog
 import android.content.*
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityPerfilBinding
@@ -20,6 +14,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import com.squareup.picasso.Picasso
+import android.Manifest
+import android.graphics.Bitmap
+import android.provider.MediaStore
+import android.provider.Settings
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -28,7 +29,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
-import com.squareup.picasso.Picasso
 import java.io.*
 import java.util.*
 
@@ -38,12 +38,10 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPerfilBinding
     private lateinit var toolbar: Toolbar
     lateinit var imageUri: Uri
-    lateinit var photo: Bitmap
 
     lateinit var storage: FirebaseStorage
     lateinit var auth: FirebaseAuth
     lateinit var dataBase: DatabaseReference
-
 
     companion object {
         private const val IMAGE_REQUEST = 1
@@ -62,31 +60,31 @@ class PerfilActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-
         getData()
+        //var bottomSheet  = Bottom_sheet()
 
         auth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
         dataBase = FirebaseDatabase.getInstance().reference
 
         binding.LayoutNome.setOnClickListener {
-            var bottomSheetNomeFragment = BottomSheetNomeFragment()
-            bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetDialog")
-
-
-        }
-        binding.LayoutRecado.setOnClickListener {
-            var bottomSheetNomeFragment = BottomSheetNomeFragment()
-            bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetDialog")
-            //findViewById<TextView>(R.id.insiraNome).setText("Adicionar recado")
-
+            val bottomSheetNomeFragment = BottomSheetNomeFragment()
+            bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetNome")
         }
 
 
         binding.fabFotoPerfil.setOnClickListener {
-            //var bottomSheet = BottomSheetImagem()
-            //bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
+
+//            var bottomSheet = Bottom_sheet()
+//            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
             showBottomSheetPickPhoto()
+//            val tirarFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//
+//            if (tirarFoto.resolveActivity(this.packageManager) != null){
+//                startActivityForResult(tirarFoto, CAMERA_REQUEST)
+//            }else{
+//                Toast.makeText(this, "Erro ao abrir a camera", Toast.LENGTH_SHORT).show()
+//            }
 
         }
 
@@ -98,17 +96,22 @@ class PerfilActivity : AppCompatActivity() {
     // ----------------------- Metodos de Click  ------------------------
 
     fun openGaleria() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, IMAGE_REQUEST)
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//        startActivityForResult(intent, IMAGE_REQUEST)
+
         Dexter.withContext(this@PerfilActivity).withPermission(
             Manifest.permission.READ_EXTERNAL_STORAGE,
         ).withListener(object : PermissionListener {
             override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-//                val intentGaleria = Intent(Intent.ACTION_PICK, MediaStore
-//                    .Images.Media.EXTERNAL_CONTENT_URI)
-//                startActivityForResult(intentGaleria, IMAGE_REQUEST)
-                val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, IMAGE_REQUEST)
+                val intentGaleria = Intent(Intent.ACTION_PICK, MediaStore
+                    .Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(intentGaleria, IMAGE_REQUEST)
 
             }
 
@@ -118,7 +121,7 @@ class PerfilActivity : AppCompatActivity() {
             }
 
             override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?,
-                p1: PermissionToken?) {
+                                                            p1: PermissionToken?) {
                 showRationalDialogForPermissions()
             }
 
@@ -128,6 +131,7 @@ class PerfilActivity : AppCompatActivity() {
     }
 
     private fun openCamera(){
+
         Dexter.withContext(this).withPermissions(
             Manifest.permission.READ_EXTERNAL_STORAGE,
             //Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -151,15 +155,17 @@ class PerfilActivity : AppCompatActivity() {
                 showRationalDialogForPermissions()
             }
 
+//            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+//                takePictureIntent.resolveActivity(packageManager)?.also {
+//                    startActivityForResult(takePictureIntent, CAMERA_REQUEST)
+//                }
+//            }
         }
 
         ).onSameThread().check()
 
 
     }
-
-
-
 
 
     // ------------------------  Bottom Sheet ----------------------------------
@@ -214,7 +220,6 @@ class PerfilActivity : AppCompatActivity() {
 
         }
 
-
     }
 
 
@@ -225,17 +230,16 @@ class PerfilActivity : AppCompatActivity() {
         var uid = FirebaseAuth.getInstance().uid
         //val uid = UUID.randomUUID().toString()
 
+        var usuario = Usuario(uid!!, binding.editTextNome.text.toString(),
+            profileImageUrl, binding.EditTextTelefone.text.toString(),binding.editTextRecado.text.toString())
+
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
-
-        var usuario = Usuario(uid.toString(),binding.editTextNome.text.toString(),profileImageUrl,binding.EditTextTelefone.text.toString(),
-        binding.editTextRecado.text.toString())
-
 
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                 //usuario: Usuario = snapshot.getValue(Usuario::class.java)!!
+                usuario = snapshot.getValue(Usuario::class.java)!!
 
                 binding.editTextNome.setText(usuario?.nome)
                 binding.EditTextTelefone.setText(usuario?.numero)
@@ -253,28 +257,34 @@ class PerfilActivity : AppCompatActivity() {
 
         })
 
+
+        //Só deus sabe o que isso faz
+        ref.setValue(usuario)
+            .addOnSuccessListener {
+
+                Log.d("PerfilActivity", "Usuario Salvo")
+            }.addOnFailureListener() {
+
+                Log.d("PerfilActivity", "Erro ao salvar usuario  no banco de dados")
+            }
     }
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK &&
-            data != null && data?.data!! != null)
-            {
-                imageUri = data?.data!!
-                uploadImage()
+            data != null && data?.data!! != null
+        ) {
+            imageUri = data?.data!!
+            uploadImage()
 
+        }
 
-            }
-
-        if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
+       if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
 
                 data?.extras?.let {
-//                    val stream = ByteArrayOutputStream()
-//                    photo.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-//
-//                    val b = stream.toByteArray()
                     val bitmap : Bitmap = data.extras!!.get("data") as Bitmap
                     binding.ImagemPerfil.setImageBitmap(bitmap)
                     //uploadImage()
@@ -282,7 +292,6 @@ class PerfilActivity : AppCompatActivity() {
 
 
         }
-
 
 
     }

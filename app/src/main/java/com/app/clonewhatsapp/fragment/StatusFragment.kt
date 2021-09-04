@@ -36,7 +36,7 @@ class StatusFragment : Fragment() {
         return binding.root
 
 
-        }
+    }
 
     private fun getData() {
         var uid = FirebaseAuth.getInstance().uid
