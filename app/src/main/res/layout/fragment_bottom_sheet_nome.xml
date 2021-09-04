@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:padding="15dp"
+    tools:context=".ui.perfil.BottomSheetNomeFragment"
+    >
+
+
+    <TextView
+        android:id="@+id/insiraNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginLeft="24dp"
+        android:textColor="@color/black"
+        android:text="@string/hint_nome_perfil"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:padding="5sp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/EditTextNomePerfil"
+                android:layout_width="wrap_content"
+                android:backgroundTint="@color/corPrimaria"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:hint="@string/hint_nome_perfil"/>
+
+            <ImageView
+                android:id="@+id/emoji_nome"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/ic_emotions_chat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/buttonSalvar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/corPrimaria"
+                android:textStyle="bold"
+                android:text="Salvar" />
+
+            <Button
+                android:id="@+id/buttonCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Cancelar"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/corPrimaria"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

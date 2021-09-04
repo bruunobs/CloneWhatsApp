@@ -67,6 +67,11 @@ class PerfilActivity : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
         dataBase = FirebaseDatabase.getInstance().reference
 
+        binding.LayoutNome.setOnClickListener {
+            val bottomSheetNomeFragment = BottomSheetNomeFragment()
+            bottomSheetNomeFragment.show(supportFragmentManager,"BottomSheetNome")
+        }
+
 
         binding.fabFotoPerfil.setOnClickListener {
 
