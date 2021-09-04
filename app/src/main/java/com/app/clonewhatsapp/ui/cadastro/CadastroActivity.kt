@@ -128,7 +128,7 @@ class CadastroActivity : AppCompatActivity() {
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
 
         var usuario = Usuario(uid!!, binding.editNome.text.toString(),
-            "", "","Hey there! I am using WhatsApp")
+            "", "+55 00 1111-2222","Hey there! I am using WhatsApp")
 
         ref.setValue(usuario)
             .addOnSuccessListener {
