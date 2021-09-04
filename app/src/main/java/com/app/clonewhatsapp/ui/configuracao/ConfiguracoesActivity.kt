@@ -35,15 +35,9 @@ class ConfiguracoesActivity : AppCompatActivity() {
 
         getData()
 
-
-        binding.ImagemPerfil.setOnClickListener {
+        binding.layoutConfigNome.setOnClickListener {
             startActivity(Intent(this@ConfiguracoesActivity, PerfilActivity::class.java))
         }
-
-        binding.linearLayoutPerfil.setOnClickListener {
-            startActivity(Intent(this@ConfiguracoesActivity, PerfilActivity::class.java))
-        }
-
 
 
 

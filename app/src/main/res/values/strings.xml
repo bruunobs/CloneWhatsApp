@@ -32,7 +32,7 @@
     <string name="config">Configurações</string>
     <string name="pessoa_perfil">Foto do perfil da pessoa</string>
     <string name="nome_pessoa_perfil">Nome</string>
-    <string name="text_status">Obrigado por mais um dia</string>
+    <string name="text_status"> </string>
     <string name="conta_config">Conta</string>
     <string name="conta_config_desc">Privacidade, segurança, mudar número</string>
     <string name="conversas_config">Conversas</string>
