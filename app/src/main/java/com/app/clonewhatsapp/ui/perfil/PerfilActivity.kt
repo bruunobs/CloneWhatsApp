@@ -1,36 +1,18 @@
 package com.app.clonewhatsapp.ui.perfil
 
-import android.content.*
-import android.net.Uri
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.ActivityPerfilBinding
 import com.app.clonewhatsapp.model.Usuario
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
-import android.Manifest
-import android.graphics.Bitmap
-import android.provider.MediaStore
-import android.provider.Settings
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import com.karumi.dexter.listener.single.PermissionListener
-import java.io.*
-import java.util.*
+
 
 
 class PerfilActivity : AppCompatActivity() {
@@ -68,7 +50,7 @@ class PerfilActivity : AppCompatActivity() {
 
         binding.fabFotoPerfil.setOnClickListener {
 
-            var bottomSheet = BottomSheetImagem()
+            val bottomSheet = BottomSheetImagem()
             bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
 
 
@@ -83,16 +65,17 @@ class PerfilActivity : AppCompatActivity() {
     }
 
     private fun getData(){
-        var uid2 = FirebaseAuth.getInstance().uid
-        var ref2 = FirebaseDatabase.getInstance().getReference("/usuarios/$uid2")
+        val uid2 = FirebaseAuth.getInstance().uid
+        val ref2 = FirebaseDatabase.getInstance().getReference("/usuarios/$uid2")
 
 
         ref2.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                var usuario = snapshot.getValue(Usuario::class.java)!!
+                val usuario = snapshot.getValue(Usuario::class.java)!!
 
-                if (usuario?.profileImageUrl == "") {
+
+                if (usuario.profileImageUrl == "") {
 
                     binding.ImagemPerfil.setImageResource(R.mipmap.ic_launcher)
 
@@ -102,24 +85,24 @@ class PerfilActivity : AppCompatActivity() {
                         .into(binding.ImagemPerfil)
                 }
 
-                if (usuario?.numero == ""){
+                if (usuario.numero == ""){
                     binding.EditTextTelefone.setText("+55 88 1111 1111")
                 }else{
-                    binding.EditTextTelefone.setText(usuario?.numero)
+                    binding.EditTextTelefone.setText(usuario.numero)
                 }
 
-                if (usuario?.nome == ""){
+                if (usuario.nome == ""){
                     binding.editTextNome.setText("Nome")
                 }else{
-                    binding.editTextNome.setText(usuario?.nome)
+                    binding.editTextNome.setText(usuario.nome)
                 }
 
 
-                if(usuario?.status == ""){
+                if(usuario.status == ""){
 
                     binding.editTextRecado.setText(R.string.status_padrao)
                 }else{
-                    binding.editTextRecado.setText(usuario?.status)
+                    binding.editTextRecado.setText(usuario.status)
                 }
 
             }

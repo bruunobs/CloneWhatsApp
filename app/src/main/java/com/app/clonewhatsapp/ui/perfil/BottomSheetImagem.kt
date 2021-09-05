@@ -200,6 +200,7 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
                 saveImagetoDatabase(it.toString())
 
 
+
             }
 
 
@@ -229,6 +230,7 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
         ) {
             imageUri = data?.data!!
             uploadImageGallery()
+
 
         }
 
