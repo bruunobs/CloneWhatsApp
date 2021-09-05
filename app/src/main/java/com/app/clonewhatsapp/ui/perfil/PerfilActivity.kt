@@ -75,9 +75,9 @@ class PerfilActivity : AppCompatActivity() {
 
         binding.fabFotoPerfil.setOnClickListener {
 
-//            var bottomSheet = Bottom_sheet()
-//            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
-            showBottomSheetPickPhoto()
+            var bottomSheet = BottomSheetImagem()
+            bottomSheet.show(supportFragmentManager,"BottomSheetDialog")
+            //showBottomSheetPickPhoto()
 //            val tirarFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 //
 //            if (tirarFoto.resolveActivity(this.packageManager) != null){
@@ -147,7 +147,6 @@ class PerfilActivity : AppCompatActivity() {
                 }
 
             }
-
             override fun onPermissionRationaleShouldBeShown(
                 permissions: MutableList<PermissionRequest>?,
                 token: PermissionToken?
@@ -295,6 +294,21 @@ class PerfilActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onPause() {
+        super.onPause()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+//        val intent = Intent()
+//        intent.extras?.getString("imagem")
+//        Picasso.get()
+//            .load("imagem")
+//            .into(binding.ImagemPerfil)
+    }
+
 
 
     private fun getData(){
