@@ -18,6 +18,8 @@
     <color name="light_gray2">#999999</color>
     <color name="title_gray">#1b262c</color>
     <color name="chat_background">#ECE5DD</color>
+    <color name="chat_mensagem">#DCF8C6</color>
+    <color name="chat_visto">#34B7F1</color>
 
 
 
