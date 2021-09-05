@@ -234,14 +234,12 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
 
         //Camera
         if (resultCode == AppCompatActivity.RESULT_OK
-            && requestCode == CAMERA_REQUEST) {
+            && requestCode == CAMERA_REQUEST)
+            {
 
                 //Upload Imagem da Camera para o Firebase e mostra na Imagem do Perfil
 
                 val bitmap : Bitmap = data?.extras!!.get("data") as Bitmap
-
-               // view.findViewById<ImageView>(R.id.Imagem_Perfil).setImageURI(bitmap)
-
                 val baos = ByteArrayOutputStream()
                 bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
                 val data = baos.toByteArray()
@@ -255,23 +253,17 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
                 uploadTask.addOnSuccessListener {
 
                     Log.d("Imagem", "Imagem salva com sucesso: ${it.metadata?.path}")
-                   // requireView().findViewById<ImageView>(R.id.Imagem_Perfil).setImageBitmap(bitmap)
-//                    Picasso.get()
-//                .load(imageUri)
-//                .into(binding.ImagemPerfil)
 
                 }
                 //Pega o URL da Imagem e manda para saveImagetoDatabase
                 ref.downloadUrl.addOnSuccessListener {
-//                    val intent = Intent(activity,PerfilActivity::class.java)
-//                    intent.putExtra("imagem",it)
-//                    startActivity(intent)
+
                     Log.d("PerfilActivity", "File location: $it")
                     saveImagetoDatabase(it.toString())
 
                 }
 
-        }
+            }
 
 
     }
