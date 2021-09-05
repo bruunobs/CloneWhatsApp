@@ -1,16 +1,19 @@
 package com.app.clonewhatsapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.model.Usuario
+import com.app.clonewhatsapp.ui.chat.ChatActivity
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -21,7 +24,7 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
     private var listaContatosFilter: List<Usuario>
     private var isChatCheck: Boolean
 
-    private lateinit var mListenr: onItemClickListener
+    //private lateinit var mListenr: onItemClickListener
 
     init {
         this.mContest = mContest
@@ -31,24 +34,24 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
         notifyDataSetChanged()
     }
 
-    interface onItemClickListener{
-
-        fun onItemClick(position: Int)
-
-    }
-
-    fun setOnItemClickListener(listener: onItemClickListener){
-
-        mListenr = listener
-
-    }
+//    interface onItemClickListener{
+//
+//        fun onItemClick(position: Int)
+//
+//    }
+//
+//    fun setOnItemClickListener(listener: onItemClickListener){
+//
+//        mListenr = listener
+//
+//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view: View = LayoutInflater.from(mContest).inflate(R.layout.adapter_contatos,parent,false)
 
-        return ContatosAdapter.ViewHolder(view,mListenr)
+        return ContatosAdapter.ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
@@ -59,6 +62,12 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
         Picasso.get()
             .load(usuario.profileImageUrl)
             .into(holder.profileImage)
+
+        holder.layoutUser.setOnClickListener {
+            val intent = Intent(mContest, ChatActivity::class.java)
+            intent.putExtra("contatoID", usuario.uid)
+            mContest.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -68,19 +77,21 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
 
 
 
-    class ViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         var nome: TextView
         var status: TextView
         var profileImage: CircleImageView
+        var layoutUser: RelativeLayout
 
         init {
-            itemView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
-            }
+//            itemView.setOnClickListener {
+//                listener.onItemClick(adapterPosition)
+//            }
             nome = itemView.findViewById(R.id.nome_contatos)
             status = itemView.findViewById(R.id.status_contatos)
             profileImage = itemView.findViewById(R.id.imagem_perfil_contatos)
+            layoutUser = itemView.findViewById(R.id.adapter_contatos)
         }
 
     }
