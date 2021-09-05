@@ -28,8 +28,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.karumi.dexter.listener.single.PermissionListener
 import com.squareup.picasso.Picasso
 import okhttp3.internal.Util
 import java.io.ByteArrayOutputStream
@@ -83,11 +86,15 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
 
 
             binding.ImagemGaleria.setOnClickListener {
+                openGaleria()
+
 
             }
 
 
         }
+
+    // ----------------------- Metodos de Click  ------------------------
 
     private fun openCamera(){
 
@@ -120,6 +127,39 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
 
     }
 
+    fun openGaleria() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, IMAGE_REQUEST)
+
+        Dexter.withContext(activity).withPermission(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+        ).withListener(object : PermissionListener {
+            override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                val intentGaleria = Intent(Intent.ACTION_PICK, MediaStore
+                    .Images.Media.EXTERNAL_CONTENT_URI)
+                startActivityForResult(intentGaleria, IMAGE_REQUEST)
+
+            }
+
+            override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                Toast.makeText(activity,"Você não permitiu o acesso a galeria",
+                    Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?,
+                                                            p1: PermissionToken?) {
+                showRationalDialogForPermissions()
+            }
+
+        }).onSameThread().check()
+
+
+    }
+
+
+    // ------------------------ Dialog das permissões -----------------------
     private fun showRationalDialogForPermissions(){
         androidx.appcompat.app.AlertDialog.Builder(requireContext()).setMessage("Você deve aceitar as permissões" +
                 "requeridas para poder usar a camera.").setPositiveButton("Va para configuracoes")
@@ -141,10 +181,40 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
 
     }
 
-    private fun saveUserToFirebaseDatabase(profileImageUrl: String) {
+    // --------------------   Upload de Imagem------------------------------
+    private fun uploadImageGallery() {
+
+        var ref = FirebaseStorage.getInstance()
+            .getReference("imagens/${auth.currentUser?.uid}/perfil.jpg")
+
+        //Da upload na imagem para o Storage e Mostra em ImagemPerfil
+        ref.putFile(imageUri!!).addOnSuccessListener {
+
+
+            Log.d("PerfilActivity", "Imagem salva com sucesso: ${it.metadata?.path}")
+
+            //Pega o URL da Imagem e envia para saveUserFirebaseDatabase
+            ref.downloadUrl.addOnSuccessListener {
+
+                Log.d("PerfilActivity", "File location: $it")
+                saveImagetoDatabase(it.toString())
+
+
+            }
+
+
+        }
+
+    }
+
+
+    // -------------------------- Salva Imagem no Banco de Dados ---------------
+    private fun saveImagetoDatabase(profileImageUrl: String) {
         var uid = FirebaseAuth.getInstance().uid
         var ref = FirebaseDatabase.getInstance().getReference("/usuarios/$uid")
         ref.child("profileImageUrl").setValue(profileImageUrl)
+
+        dismiss()
 
     }
 
@@ -153,17 +223,21 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        //Galeria
         if (requestCode == IMAGE_REQUEST && resultCode == AppCompatActivity.RESULT_OK &&
             data != null && data?.data!! != null
         ) {
             imageUri = data?.data!!
-//            uploadImage()
+            uploadImageGallery()
 
         }
 
-        if (resultCode == AppCompatActivity.RESULT_OK && requestCode == CAMERA_REQUEST) {
+        //Camera
+        if (resultCode == AppCompatActivity.RESULT_OK
+            && requestCode == CAMERA_REQUEST) {
 
                 //Upload Imagem da Camera para o Firebase e mostra na Imagem do Perfil
+
                 val bitmap : Bitmap = data?.extras!!.get("data") as Bitmap
 
                // view.findViewById<ImageView>(R.id.Imagem_Perfil).setImageURI(bitmap)
@@ -180,44 +254,29 @@ class BottomSheetImagem : BottomSheetDialogFragment(){
 
                 uploadTask.addOnSuccessListener {
 
-                    Toast.makeText(activity,"Sucesso ao realizar upload da imagem",Toast.LENGTH_SHORT).show()
                     Log.d("Imagem", "Imagem salva com sucesso: ${it.metadata?.path}")
                    // requireView().findViewById<ImageView>(R.id.Imagem_Perfil).setImageBitmap(bitmap)
 //                    Picasso.get()
 //                .load(imageUri)
 //                .into(binding.ImagemPerfil)
 
-
                 }
-
+                //Pega o URL da Imagem e manda para saveImagetoDatabase
                 ref.downloadUrl.addOnSuccessListener {
 //                    val intent = Intent(activity,PerfilActivity::class.java)
 //                    intent.putExtra("imagem",it)
 //                    startActivity(intent)
-
-//                    Picasso.get()
-//                .load(it)
-//                .into(view?.findViewById(R.id.Imagem_Perfil))
                     Log.d("PerfilActivity", "File location: $it")
-                    saveUserToFirebaseDatabase(it.toString())
+                    saveImagetoDatabase(it.toString())
 
                 }
-
-
-
 
         }
 
 
     }
 
-    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "perfil", null)
-        return Uri.parse(path)
-    }
+
 
 
 }

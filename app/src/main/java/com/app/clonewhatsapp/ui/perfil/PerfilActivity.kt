@@ -100,10 +100,6 @@ class PerfilActivity : AppCompatActivity() {
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(intent, IMAGE_REQUEST)
-//        val intent = Intent()
-//        intent.type = "image/*"
-//        intent.action = Intent.ACTION_GET_CONTENT
-//        startActivityForResult(intent, IMAGE_REQUEST)
 
         Dexter.withContext(this@PerfilActivity).withPermission(
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -257,7 +253,6 @@ class PerfilActivity : AppCompatActivity() {
         })
 
 
-        //Só deus sabe o que isso faz
         ref.setValue(usuario)
             .addOnSuccessListener {
 
@@ -297,18 +292,8 @@ class PerfilActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-
+        getData()
     }
-
-    override fun onResume() {
-        super.onResume()
-//        val intent = Intent()
-//        intent.extras?.getString("imagem")
-//        Picasso.get()
-//            .load("imagem")
-//            .into(binding.ImagemPerfil)
-    }
-
 
 
     private fun getData(){
