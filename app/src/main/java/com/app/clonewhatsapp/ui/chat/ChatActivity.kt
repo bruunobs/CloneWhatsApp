@@ -101,13 +101,15 @@ class ChatActivity : AppCompatActivity() {
         hashMap.put("remetenteId", remetenteId)
         hashMap.put("destinaratioId", destinatarioId)
         hashMap.put("mensagem", mensagem)
-        reference!!.child("Chat").push().setValue(hashMap)
+        reference!!.child("Chat/$remetenteId/$destinatarioId").push().setValue(hashMap)
     }
+
+    
 
     // Ler Mensagem
     private fun readMessage(remetenteId: String, destinatarioId: String){
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        var ref = FirebaseDatabase.getInstance().getReference("Chat")
+        var ref = FirebaseDatabase.getInstance().getReference("Chat/$remetenteId/$destinatarioId")
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

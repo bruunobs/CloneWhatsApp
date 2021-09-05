@@ -48,6 +48,8 @@
                     app:strokeColor="@color/white"
                     app:strokeWidth="1dp"
                     app:cardBackgroundColor="@color/corAccent"
+                    android:background="@color/corAccent"
+                    android:backgroundTint="@color/corAccent"
                     app:cardCornerRadius="30dp">
 
                     <ImageView
@@ -55,7 +57,9 @@
                         android:layout_height="15dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_add_status"
-                        app:cardBackgroundColor="@color/corAccent" />
+                        app:cardBackgroundColor="@color/corAccent"
+                        android:backgroundTint="@color/corAccent"
+                        android:background="@color/corAccent"/>
                 </com.google.android.material.card.MaterialCardView>
 
 
