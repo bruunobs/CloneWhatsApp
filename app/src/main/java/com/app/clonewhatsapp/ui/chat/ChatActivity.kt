@@ -2,6 +2,7 @@ package com.app.clonewhatsapp.ui.chat
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.app.clonewhatsapp.R
 import androidx.appcompat.widget.Toolbar
 import com.app.clonewhatsapp.databinding.ActivityChatBinding
@@ -56,7 +57,27 @@ class ChatActivity : AppCompatActivity() {
         })
 
 
+        binding.fabMic.setOnClickListener {
+            var mensagem: String = binding.EditTextChat.text.toString()
 
+            if(mensagem.isEmpty()){
+                Toast.makeText(applicationContext,"Mensagem esta vazia",Toast.LENGTH_SHORT).show()
+            }else{
+                sendMessage(firebaseUser!!.uid,contatoId,mensagem)
+            }
+        }
+
+
+    }
+
+    private fun sendMessage(remetenteId: String, destinatarioId: String, mensagem: String){
+        var reference: DatabaseReference?  = FirebaseDatabase.getInstance().getReference()
+
+        var hashMap: HashMap<String,String> = HashMap()
+        hashMap.put("remetenteId", remetenteId)
+        hashMap.put("destinaratioId", destinatarioId)
+        hashMap.put("mensagem", mensagem)
+        reference!!.child("Chat").push().setValue(hashMap)
     }
 
 
