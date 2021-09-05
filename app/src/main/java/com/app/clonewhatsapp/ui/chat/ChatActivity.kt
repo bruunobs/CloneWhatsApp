@@ -1,12 +1,19 @@
 package com.app.clonewhatsapp.ui.chat
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.app.clonewhatsapp.R
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.app.clonewhatsapp.adapter.ChatAdapter
+import com.app.clonewhatsapp.adapter.ContatosAdapter
 import com.app.clonewhatsapp.databinding.ActivityChatBinding
+import com.app.clonewhatsapp.model.Chat
 import com.app.clonewhatsapp.model.Usuario
+import com.app.clonewhatsapp.ui.principal.PrincipalActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -19,17 +26,29 @@ class ChatActivity : AppCompatActivity() {
     var firebaseUser: FirebaseUser? = null
     var reference: DatabaseReference? = null
 
+    private var chatMensagem: ArrayList<Chat>? = null
+    private var recyclerView: RecyclerView? = null
+    private var chatAdapter: ChatAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Configurando toolbar
         toolbar = findViewById(R.id.toolbarPrincipal)
         toolbar.title = ""
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        // Configurando RecyclerView
+        recyclerView = binding.RecyclerViewChat
+        recyclerView!!.setHasFixedSize(true)
+        recyclerView!!.layoutManager = LinearLayoutManager(this)
+        chatMensagem = ArrayList()
+
+        //Recebendo Imagem e nome do contato
         var intent = intent
         var contatoId = intent.getStringExtra("contatoID")
         firebaseUser = FirebaseAuth.getInstance().currentUser
@@ -62,14 +81,19 @@ class ChatActivity : AppCompatActivity() {
 
             if(mensagem.isEmpty()){
                 Toast.makeText(applicationContext,"Mensagem esta vazia",Toast.LENGTH_SHORT).show()
+                binding.EditTextChat.setText("")
             }else{
                 sendMessage(firebaseUser!!.uid,contatoId,mensagem)
+                binding.EditTextChat.setText("")
+
             }
         }
 
+        readMessage(firebaseUser!!.uid,contatoId)
 
     }
 
+    //Enviar mensagem
     private fun sendMessage(remetenteId: String, destinatarioId: String, mensagem: String){
         var reference: DatabaseReference?  = FirebaseDatabase.getInstance().getReference()
 
@@ -80,11 +104,45 @@ class ChatActivity : AppCompatActivity() {
         reference!!.child("Chat").push().setValue(hashMap)
     }
 
+    // Ler Mensagem
+    private fun readMessage(remetenteId: String, destinatarioId: String){
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+        var ref = FirebaseDatabase.getInstance().getReference("Chat")
+
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                (chatMensagem as ArrayList<Chat>).clear()
+                for(snapshot in snapshot.children)
+                {
+                    var chat = snapshot.getValue(Chat::class.java)!!
+
+                    if(chat!!.remetenteId.equals(remetenteId) && chat!!.destinaratioId.equals(destinatarioId) ||
+                        chat!!.remetenteId.equals(destinatarioId) && chat!!.destinaratioId.equals(remetenteId))
+                    {
+                        (chatMensagem as ArrayList<Chat>).add(chat)
+                    }
+
+                }
+                chatAdapter = ChatAdapter(this@ChatActivity,chatMensagem!!,false)
+                recyclerView!!.adapter = chatAdapter
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+
 
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        startActivity(Intent(this@ChatActivity,PrincipalActivity::class.java))
         finish()
         return true
     }
+
 }

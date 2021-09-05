@@ -14,6 +14,8 @@
         <entry key="..\:/Android/Projetos/CloneWhatsApp/app/src/main/res/menu/menu_principal.xml" value="0.36102564102564105" />
         <entry key="..\:/Android/Projetos/CloneWhatsApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3769230769230769" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/fundo_mensagem_chat.xml" value="0.3769230769230769" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/fundo_mensagem_direita_item.xml" value="0.3828125" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/fundo_mensagem_esquerda_item.xml" value="0.3828125" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic__camera_white.xml" value="0.3769230769230769" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_add_status.xml" value="0.3828125" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/drawable/ic_attach_file_chat.xml" value="0.3769230769230769" />
@@ -51,6 +53,8 @@
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_perfil.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/activity_principal.xml" value="0.36666666666666664" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/adapter_chat_direita.xml" value="0.36666666666666664" />
+        <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/adapter_chat_esquerda.xml" value="0.36666666666666664" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/adapter_contatos.xml" value="0.5" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/bottom_sheet_nome.xml" value="0.5" />
         <entry key="..\:/ProjetosAndroid/CloneWhatsApp/app/src/main/res/layout/bottom_sheet_pick.xml" value="0.33" />

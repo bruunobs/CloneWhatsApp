@@ -118,24 +118,6 @@ class ContatosActivity : AppCompatActivity() {
                 }
                 contatosAdapter = ContatosAdapter(this@ContatosActivity,usuarios!!,false)
                 recyclerView!!.adapter = contatosAdapter
-//
-//                contatosAdapter!!.setOnItemClickListener(object : ContatosAdapter.onItemClickListener{
-//                    override fun onItemClick(position: Int) {
-//
-////                        var listaContatos = snapshot.getValue(Usuario::class.java)!!
-////                        val intent =
-////                            Intent(this@ContatosActivity, ChatActivity::class.java)
-////                        intent.flags =
-////                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-////                        intent.putExtra("chatContato",listaContatos.nome)
-////                        //intent.putExtra("email_id", ref)
-////                        startActivity(intent)
-////                        finish()
-//                        startActivity(Intent(this@ContatosActivity,ChatActivity::class.java))
-//                        finish()
-//                    }
-//
-//                })
 
             }
 

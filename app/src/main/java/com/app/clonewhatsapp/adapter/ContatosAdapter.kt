@@ -24,8 +24,6 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
     private var listaContatosFilter: List<Usuario>
     private var isChatCheck: Boolean
 
-    //private lateinit var mListenr: onItemClickListener
-
     init {
         this.mContest = mContest
         this.listaContatos = listaContatos
@@ -33,18 +31,6 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
         this.isChatCheck = isChatCheck
         notifyDataSetChanged()
     }
-
-//    interface onItemClickListener{
-//
-//        fun onItemClick(position: Int)
-//
-//    }
-//
-//    fun setOnItemClickListener(listener: onItemClickListener){
-//
-//        mListenr = listener
-//
-//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -85,9 +71,6 @@ class ContatosAdapter(mContest: Context,listaContatos: List<Usuario>,isChatCheck
         var layoutUser: RelativeLayout
 
         init {
-//            itemView.setOnClickListener {
-//                listener.onItemClick(adapterPosition)
-//            }
             nome = itemView.findViewById(R.id.nome_contatos)
             status = itemView.findViewById(R.id.status_contatos)
             profileImage = itemView.findViewById(R.id.imagem_perfil_contatos)

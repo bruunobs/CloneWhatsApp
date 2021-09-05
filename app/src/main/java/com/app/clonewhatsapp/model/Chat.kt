@@ -1,4 +1,8 @@
 package com.app.clonewhatsapp.model
 
-class Chat {
-}
+data class Chat(
+    var remetenteId: String? = "",
+    var destinaratioId: String? = "",
+    var mensagem: String? = "",
+
+)
