@@ -4,7 +4,7 @@ data class Conversas(
     val id: String? = "",
     var remetenteId: String? = "",
     var destinaratioId: String? = "",
-    var UltimaMensagem: String? = "",
+    var mensagem: String? = "",
     var tempo: Long? = -1,
 
-)
+    )

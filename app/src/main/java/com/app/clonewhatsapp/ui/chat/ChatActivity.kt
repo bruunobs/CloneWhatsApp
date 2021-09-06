@@ -12,6 +12,7 @@ import com.app.clonewhatsapp.adapter.ChatAdapter
 import com.app.clonewhatsapp.adapter.ContatosAdapter
 import com.app.clonewhatsapp.databinding.ActivityChatBinding
 import com.app.clonewhatsapp.model.Chat
+import com.app.clonewhatsapp.model.Conversas
 import com.app.clonewhatsapp.model.Usuario
 import com.app.clonewhatsapp.ui.principal.PrincipalActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -114,6 +115,9 @@ class ChatActivity : AppCompatActivity() {
         reference!!.child("/mensagens-usuarios/$destinatarioId/$remetenteId").push().setValue(hashMap)
 
         //Salva Conversa
+        reference!!.child("/conversas-usuarios/$remetenteId/$destinatarioId").push().setValue(hashMap)
+        reference!!.child("/conversas-usuarios/$destinatarioId/$remetenteId").push().setValue(hashMap)
+
 
     }
 
@@ -123,7 +127,6 @@ class ChatActivity : AppCompatActivity() {
     private fun readMessage(remetenteId: String, destinatarioId: String){
 
         var ref = FirebaseDatabase.getInstance().getReference("/mensagens-usuarios/$remetenteId/$destinatarioId")
-
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

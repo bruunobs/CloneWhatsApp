@@ -41,8 +41,8 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>, i
 
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
         val conversas: Conversas? = conversasList[i]
-        holder.itemView.findViewById<TextView>(R.id.ultima_conversa).text = conversas!!.UltimaMensagem
-        holder.itemView.findViewById<TextView>(R.id.nome_conversa).text = conversas!!.destinaratioId
+        holder.itemView.findViewById<TextView>(R.id.ultima_conversa).text = conversas!!.mensagem
+//        holder.itemView.findViewById<TextView>(R.id.nome_conversa).text = conversas!!.destinaratioId
 
 
     }
