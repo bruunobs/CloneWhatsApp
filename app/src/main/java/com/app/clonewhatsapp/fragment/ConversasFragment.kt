@@ -14,6 +14,7 @@ import com.app.clonewhatsapp.adapter.ConversasAdapter
 import com.app.clonewhatsapp.databinding.FragmentConversasBinding
 import com.app.clonewhatsapp.model.Chat
 import com.app.clonewhatsapp.model.Conversas
+import com.app.clonewhatsapp.model.Usuario
 import com.app.clonewhatsapp.ui.contatos.ContatosActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ChildEventListener
@@ -84,7 +85,7 @@ class ConversasFragment : Fragment() {
 //    }
 
     private fun Conversas(){
-
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
         var intent = Intent()
         val destinatarioId = intent.getStringExtra("contatoID")
 
@@ -100,10 +101,15 @@ class ConversasFragment : Fragment() {
                         {
                             (conversasContatos as ArrayList<Conversas>).add(conversas!!)
                         }
-//                    ultimaMensagemMap[snapshot.key!!] = conversas
-//                    refreshRecyclerViewConversas()
-//                    refreshRecyclerViewConversas()
+
+//                    if(!(conversas!!.destinaratioId).equals(destinatarioId))
+//                    {
+//                        (conversasContatos as ArrayList<Conversas>).add(conversas!!)
+//                    }
+
                 }
+
+
                 conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!,false)
                 recyclerView!!.adapter = conversasAdapter
 
@@ -119,9 +125,7 @@ class ConversasFragment : Fragment() {
                     {
                         (conversasContatos as ArrayList<Conversas>).add(conversas!!)
                     }
-//                    ultimaMensagemMap[snapshot.key!!] = conversas
-//                    refreshRecyclerViewConversas()
-//                    refreshRecyclerViewConversas()
+
                 }
                 conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!,false)
                 recyclerView!!.adapter = conversasAdapter
