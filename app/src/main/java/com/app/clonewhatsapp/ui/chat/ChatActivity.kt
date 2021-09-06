@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class ChatActivity : AppCompatActivity() {
 
@@ -98,7 +101,9 @@ class ChatActivity : AppCompatActivity() {
     private fun sendMessage(remetenteId: String, destinatarioId: String, mensagem: String, tempo: Long){
         var reference: DatabaseReference?  = FirebaseDatabase.getInstance().getReference()
 
+        val idMessage = UUID.randomUUID().toString() //$idMessage
         var hashMap: HashMap<String,Any> = HashMap()
+        hashMap.put("Id", idMessage)
         hashMap.put("remetenteId", remetenteId)
         hashMap.put("destinaratioId", destinatarioId)
         hashMap.put("mensagem", mensagem)
