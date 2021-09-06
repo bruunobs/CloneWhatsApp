@@ -75,6 +75,7 @@ class ChatActivity : AppCompatActivity() {
             }
         })
 
+        readMessage(firebaseUser!!.uid,contatoId)
 
         binding.fabMic.setOnClickListener {
             var mensagem: String = binding.EditTextChat.text.toString()
@@ -89,7 +90,7 @@ class ChatActivity : AppCompatActivity() {
             }
         }
 
-        readMessage(firebaseUser!!.uid,contatoId)
+
 
     }
 
@@ -97,19 +98,22 @@ class ChatActivity : AppCompatActivity() {
     private fun sendMessage(remetenteId: String, destinatarioId: String, mensagem: String){
         var reference: DatabaseReference?  = FirebaseDatabase.getInstance().getReference()
 
-        var hashMap: HashMap<String,String> = HashMap()
+        var hashMap: HashMap<String,Any> = HashMap()
         hashMap.put("remetenteId", remetenteId)
         hashMap.put("destinaratioId", destinatarioId)
         hashMap.put("mensagem", mensagem)
-        reference!!.child("Chat/$remetenteId/$destinatarioId").push().setValue(hashMap)
+//        hashMap.put("tempo", tempo)
+        reference!!.child("/mensagens-usuarios/$remetenteId/$destinatarioId").push().setValue(hashMap)
+        reference!!.child("/mensagens-usuarios/$destinatarioId/$remetenteId").push().setValue(hashMap)
     }
 
     
 
     // Ler Mensagem
     private fun readMessage(remetenteId: String, destinatarioId: String){
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        var ref = FirebaseDatabase.getInstance().getReference("Chat/$remetenteId/$destinatarioId")
+
+        var ref = FirebaseDatabase.getInstance().getReference("/mensagens-usuarios/$remetenteId/$destinatarioId")
+
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -136,6 +140,7 @@ class ChatActivity : AppCompatActivity() {
             }
 
         })
+
     }
 
 

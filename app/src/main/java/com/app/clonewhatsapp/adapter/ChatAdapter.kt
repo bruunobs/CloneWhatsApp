@@ -56,6 +56,7 @@ class ChatAdapter(mContest: Context, chatList: ArrayList<Chat>, isChatCheck: Boo
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
         val chat: Chat? = chatList[i]
         holder.itemView.findViewById<TextView>(R.id.mensagem_chat).text = chat!!.mensagem
+//        holder.itemView.findViewById<TextView>(R.id.mensagem_chat).text = chat!!.mensagem
         //holder.itemView.findViewById<TextView>(R.id.nome_contatos).text = chat!!.mensagem
         //Colocar a hora depois
     }
