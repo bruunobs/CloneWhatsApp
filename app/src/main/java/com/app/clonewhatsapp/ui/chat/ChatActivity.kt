@@ -84,7 +84,7 @@ class ChatActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Mensagem esta vazia",Toast.LENGTH_SHORT).show()
                 binding.EditTextChat.setText("")
             }else{
-                sendMessage(firebaseUser!!.uid,contatoId,mensagem)
+                sendMessage(firebaseUser!!.uid,contatoId,mensagem,System.currentTimeMillis() / 1000)
                 binding.EditTextChat.setText("")
 
             }
@@ -95,14 +95,14 @@ class ChatActivity : AppCompatActivity() {
     }
 
     //Enviar mensagem
-    private fun sendMessage(remetenteId: String, destinatarioId: String, mensagem: String){
+    private fun sendMessage(remetenteId: String, destinatarioId: String, mensagem: String, tempo: Long){
         var reference: DatabaseReference?  = FirebaseDatabase.getInstance().getReference()
 
         var hashMap: HashMap<String,Any> = HashMap()
         hashMap.put("remetenteId", remetenteId)
         hashMap.put("destinaratioId", destinatarioId)
         hashMap.put("mensagem", mensagem)
-//        hashMap.put("tempo", tempo)
+        hashMap.put("tempo", tempo)
         reference!!.child("/mensagens-usuarios/$remetenteId/$destinatarioId").push().setValue(hashMap)
         reference!!.child("/mensagens-usuarios/$destinatarioId/$remetenteId").push().setValue(hashMap)
     }
