@@ -101,6 +101,7 @@ class ChatActivity : AppCompatActivity() {
     private fun sendMessage(remetenteId: String, destinatarioId: String, mensagem: String, tempo: Long){
         var reference: DatabaseReference?  = FirebaseDatabase.getInstance().getReference()
 
+        //Salva Mensagem
         val idMessage = UUID.randomUUID().toString() //$idMessage
         var hashMap: HashMap<String,Any> = HashMap()
         hashMap.put("Id", idMessage)
@@ -108,8 +109,12 @@ class ChatActivity : AppCompatActivity() {
         hashMap.put("destinaratioId", destinatarioId)
         hashMap.put("mensagem", mensagem)
         hashMap.put("tempo", tempo)
+
         reference!!.child("/mensagens-usuarios/$remetenteId/$destinatarioId").push().setValue(hashMap)
         reference!!.child("/mensagens-usuarios/$destinatarioId/$remetenteId").push().setValue(hashMap)
+
+        //Salva Conversa
+
     }
 
     
@@ -149,7 +154,9 @@ class ChatActivity : AppCompatActivity() {
     }
 
 
-
+    private fun saveChat(){
+        
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         startActivity(Intent(this@ChatActivity,PrincipalActivity::class.java))

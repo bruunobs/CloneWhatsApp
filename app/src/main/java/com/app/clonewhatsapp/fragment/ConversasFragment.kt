@@ -6,13 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.app.clonewhatsapp.adapter.ChatAdapter
+import com.app.clonewhatsapp.adapter.ConversasAdapter
 import com.app.clonewhatsapp.databinding.FragmentConversasBinding
+import com.app.clonewhatsapp.model.Chat
+import com.app.clonewhatsapp.model.Conversas
 import com.app.clonewhatsapp.ui.contatos.ContatosActivity
 
 
 class ConversasFragment : Fragment() {
 
     lateinit var binding: FragmentConversasBinding
+
+    private var conversas: ArrayList<Conversas>? = null
+    private var recyclerView: RecyclerView? = null
+    private var conversasAdapter: ConversasAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +38,12 @@ class ConversasFragment : Fragment() {
     ): View? {
 
         binding = FragmentConversasBinding.inflate(inflater, container, false)
+
+        // Configurando RecyclerView
+        recyclerView = binding.RecyclerViewConversas
+        recyclerView!!.setHasFixedSize(true)
+        recyclerView!!.layoutManager = LinearLayoutManager(activity)
+        conversas = ArrayList()
 
         binding.fabContatos.setOnClickListener {
             val intent = Intent(context, ContatosActivity::class.java)
