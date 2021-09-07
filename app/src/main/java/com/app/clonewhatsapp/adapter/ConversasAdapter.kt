@@ -51,8 +51,15 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) :
 
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
         val conversas: Conversas? = conversasList[i]
+        //val conversas = Conversas()
+        val chatPartnerId: String
+        if (conversas!!.remetenteId == FirebaseAuth.getInstance().uid){
+            chatPartnerId = conversas.destinaratioId!!
+        }else{
+            chatPartnerId = conversas.remetenteId!!
+        }
 
-        val ref = FirebaseDatabase.getInstance().getReference("/usuarios/${conversas?.destinaratioId}")
+        val ref = FirebaseDatabase.getInstance().getReference("/usuarios/$chatPartnerId")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val usuario = snapshot.getValue(Usuario::class.java)

@@ -54,19 +54,12 @@ class ConversasFragment : Fragment() {
         conversasContatos = ArrayList()
 
 
-        Conversas()
+        RecuperarConversas()
 
         binding.fabContatos.setOnClickListener {
             val intent = Intent(context, ContatosActivity::class.java)
             startActivity(intent)
 
-//            val contatosFragment: Fragment = ContatosFragment()
-//            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-//            transaction.replace(R.id.fragment_conversas,
-//                contatosFragment
-//            ) // give your fragment container id in first parameter
-//            transaction.addToBackStack(null) // if written, this transaction will be added to backstack
-//            transaction.commit()
 
         }
 
@@ -77,18 +70,20 @@ class ConversasFragment : Fragment() {
 
     val ultimaMensagemMap = HashMap<String, Conversas>()
 
-//    private fun refreshRecyclerViewConversas(){
-//        (conversasContatos as ArrayList<Conversas>).clear()
-//        ultimaMensagemMap.values.forEach {
-//            (conversasContatos as ArrayList<Conversas>).add(it)
-//        }
-//    }
+    private fun refreshRecyclerViewConversas(){
+        conversasContatos!!.clear()
+        ultimaMensagemMap.values.forEach {
+            conversasContatos!!.add(it)
+        }
+    }
 
-    private fun Conversas(){
+    private fun RecuperarConversas(){
         var intent = Intent()
-        val destinatarioId = intent.getStringExtra("contatoID")
+//        val destinatarioId = intent.getStringExtra("contatoID")
 
         val remetenteId = FirebaseAuth.getInstance().uid
+
+
         val ref = FirebaseDatabase.getInstance().getReference("/conversas-usuarios/$remetenteId")
 
         ref!!.addChildEventListener(object : ChildEventListener {
@@ -97,34 +92,33 @@ class ConversasFragment : Fragment() {
 //                (conversasContatos as ArrayList<Conversas>).clear()
                 var conversas = snapshot.getValue(Conversas::class.java)
 
-                if((conversas!!.remetenteId) == remetenteId)
-                {
-                    (conversasContatos as ArrayList<Conversas>).add(conversas!!)
-                }
+//               if (!(conversas!!.remetenteId).equals(remetenteId))
+//                {
+                    ultimaMensagemMap[snapshot.key!!] = conversas!!
+                    refreshRecyclerViewConversas()
+//                }
 
-
-
-                conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!)
+                conversasAdapter = ConversasAdapter(context!!,conversasContatos!!)
                 recyclerView!!.adapter = conversasAdapter
-                conversasAdapter!!.notifyDataSetChanged()
 
 
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-//                conversasContatos!!.clear()
+//
                 var conversas = snapshot.getValue(Conversas::class.java)
 
-                if((conversas!!.remetenteId) == remetenteId)
-                {
-                    (conversasContatos as ArrayList<Conversas>).add(conversas!!)
-                }
+//                    if (!((conversas!!.remetenteId) == remetenteId))
+//                if((conversas!!.remetenteId) == remetenteId || (conversas!!.destinaratioId) == destinatarioId)
+//                {
+                    ultimaMensagemMap[snapshot.key!!] = conversas!!
+                    refreshRecyclerViewConversas()
+//
+//                }
 
 
-
-                conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!)
+                conversasAdapter = ConversasAdapter(context!!,conversasContatos!!)
                 recyclerView!!.adapter = conversasAdapter
-                conversasAdapter!!.notifyDataSetChanged()
 
             }
 

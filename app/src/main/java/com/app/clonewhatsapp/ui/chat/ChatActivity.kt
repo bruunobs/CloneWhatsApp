@@ -114,15 +114,13 @@ class ChatActivity : AppCompatActivity() {
         reference!!.child("/mensagens-usuarios/$remetenteId/$destinatarioId").push().setValue(hashMap)
         reference!!.child("/mensagens-usuarios/$destinatarioId/$remetenteId").push().setValue(hashMap)
 
-
+        // Salva Conversa
         val conversas = Conversas(idMessage,remetenteId,destinatarioId,mensagem,tempo)
 
         val ultimaMensagemRem = FirebaseDatabase.getInstance().getReference("/conversas-usuarios/$remetenteId/$destinatarioId")
         val ultimaMensagemDest = FirebaseDatabase.getInstance().getReference("/conversas-usuarios/$destinatarioId/$remetenteId")
         ultimaMensagemRem.setValue(conversas)
         ultimaMensagemDest.setValue(conversas)
-
-
 
 
     }
@@ -162,17 +160,6 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
-
-//    private fun saveChat(mensagem: String){
-//        var intent = intent
-//        var contatoId = intent.getStringExtra("contatoID")
-//        val remetenteId = FirebaseAuth.getInstance().uid
-//        //Salva Conversa
-//        val conversas = Conversas(reference!!.key.toString(),remetenteId,contatoId.toString(),mensagem,System.currentTimeMillis() / 1000)
-////        reference!!.child("/conversas-usuarios/$remetenteId/$destinatarioId").push().setValue(hashMap)
-////        reference!!.child("/conversas-usuarios/$destinatarioId/$remetenteId").push().setValue(hashMap)
-//
-//    }
 
     override fun onSupportNavigateUp(): Boolean {
         startActivity(Intent(this@ChatActivity,PrincipalActivity::class.java))
