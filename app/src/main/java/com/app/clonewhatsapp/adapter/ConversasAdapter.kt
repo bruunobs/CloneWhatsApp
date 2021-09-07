@@ -65,6 +65,12 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) :
                         .into(holder.imagePerfil)
                 }
 
+                holder.layoutConversas.setOnClickListener {
+                    val intent = Intent(mContest, ChatActivity::class.java)
+                    intent.putExtra("contatoID", usuario!!.uid)
+                    mContest.startActivity(intent)
+                }
+
 
             }
 
@@ -93,11 +99,13 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) :
         var UltimaMensagem: TextView
         var imagePerfil: CircleImageView
         var horaMensagem : TextView
+        var layoutConversas: RelativeLayout
 
         init {
             UltimaMensagem = itemView.findViewById(R.id.ultima_conversa)
             imagePerfil = itemView.findViewById(R.id.imagem_perfil_conversa)
             horaMensagem = itemView.findViewById(R.id.hora_mensagem_conversa)
+            layoutConversas = itemView.findViewById(R.id.adapter_conversas)
 
         }
 
