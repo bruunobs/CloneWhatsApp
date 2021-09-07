@@ -85,7 +85,6 @@ class ConversasFragment : Fragment() {
 //    }
 
     private fun Conversas(){
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
         var intent = Intent()
         val destinatarioId = intent.getStringExtra("contatoID")
 
@@ -94,41 +93,38 @@ class ConversasFragment : Fragment() {
 
         ref!!.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                (conversasContatos as ArrayList<Conversas>).clear()
-                for (snapshot in snapshot.children){
-                        var conversas = snapshot.getValue(Conversas::class.java)
-                    if(conversas!!.remetenteId.equals(remetenteId))
-                        {
-                            (conversasContatos as ArrayList<Conversas>).add(conversas!!)
-                        }
 
-//                    if(!(conversas!!.destinaratioId).equals(destinatarioId))
-//                    {
-//                        (conversasContatos as ArrayList<Conversas>).add(conversas!!)
-//                    }
+//                (conversasContatos as ArrayList<Conversas>).clear()
+                var conversas = snapshot.getValue(Conversas::class.java)
 
+                if((conversas!!.remetenteId) == remetenteId)
+                {
+                    (conversasContatos as ArrayList<Conversas>).add(conversas!!)
                 }
 
 
-                conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!,false)
+
+                conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!)
                 recyclerView!!.adapter = conversasAdapter
+                conversasAdapter!!.notifyDataSetChanged()
 
 
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+//                conversasContatos!!.clear()
+                var conversas = snapshot.getValue(Conversas::class.java)
 
-                (conversasContatos as ArrayList<Conversas>).clear()
-                for (snapshot in snapshot.children){
-                    var conversas = snapshot.getValue(Conversas::class.java)
-                    if(conversas!!.remetenteId.equals(remetenteId))
-                    {
-                        (conversasContatos as ArrayList<Conversas>).add(conversas!!)
-                    }
-
+                if((conversas!!.remetenteId) == remetenteId)
+                {
+                    (conversasContatos as ArrayList<Conversas>).add(conversas!!)
                 }
-                conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!,false)
+
+
+
+                conversasAdapter = ConversasAdapter(activity!!,conversasContatos!!)
                 recyclerView!!.adapter = conversasAdapter
+                conversasAdapter!!.notifyDataSetChanged()
 
             }
 

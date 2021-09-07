@@ -1,7 +1,7 @@
 package com.app.clonewhatsapp.model
 
 data class Conversas(
-    val id: String? = "",
+    var uid: String? = "",
     var remetenteId: String? = "",
     var destinaratioId: String? = "",
     var mensagem: String? = "",
