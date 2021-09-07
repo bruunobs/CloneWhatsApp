@@ -34,6 +34,8 @@ class ChatActivity : AppCompatActivity() {
     private var recyclerView: RecyclerView? = null
     private var chatAdapter: ChatAdapter? = null
 
+    private var valueEventListenerContatos: ValueEventListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
@@ -52,6 +54,50 @@ class ChatActivity : AppCompatActivity() {
         recyclerView!!.layoutManager = LinearLayoutManager(this)
         chatMensagem = ArrayList()
 
+        //Recebendo Imagem e nome do contato
+        var intent = intent
+        var contatoId = intent.getStringExtra("contatoID")
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+
+
+
+        binding.fabMic.setOnClickListener {
+            var mensagem: String = binding.EditTextChat.text.toString()
+
+            if(mensagem.isEmpty()){
+                Toast.makeText(applicationContext,"Mensagem esta vazia",Toast.LENGTH_SHORT).show()
+                binding.EditTextChat.setText("")
+            }else{
+                sendMessage(firebaseUser!!.uid,contatoId!!,mensagem,System.currentTimeMillis() / 1000)
+                binding.EditTextChat.setText("")
+
+            }
+
+        }
+
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var intent = intent
+        var contatoId = intent.getStringExtra("contatoID")
+        RetrieveImageAndName()
+        readMessage(firebaseUser!!.uid,contatoId!!)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        var intent = intent
+        var destinatarioId = intent.getStringExtra("contatoID")
+
+        var userref = FirebaseDatabase.getInstance().getReference("/mensagens-usuarios/${firebaseUser!!.uid}/$destinatarioId")
+        userref.removeEventListener(valueEventListenerContatos!!)
+    }
+
+    // Recupera Imagem e Nome do contato
+    private fun RetrieveImageAndName(){
         //Recebendo Imagem e nome do contato
         var intent = intent
         var contatoId = intent.getStringExtra("contatoID")
@@ -78,24 +124,6 @@ class ChatActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
-
-        readMessage(firebaseUser!!.uid,contatoId)
-
-        binding.fabMic.setOnClickListener {
-            var mensagem: String = binding.EditTextChat.text.toString()
-
-            if(mensagem.isEmpty()){
-                Toast.makeText(applicationContext,"Mensagem esta vazia",Toast.LENGTH_SHORT).show()
-                binding.EditTextChat.setText("")
-            }else{
-                sendMessage(firebaseUser!!.uid,contatoId,mensagem,System.currentTimeMillis() / 1000)
-                binding.EditTextChat.setText("")
-
-            }
-        }
-
-
-
     }
 
     //Enviar mensagem
@@ -132,7 +160,7 @@ class ChatActivity : AppCompatActivity() {
 
         var ref = FirebaseDatabase.getInstance().getReference("/mensagens-usuarios/$remetenteId/$destinatarioId")
 
-        ref.addValueEventListener(object : ValueEventListener {
+        valueEventListenerContatos = ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 (chatMensagem as ArrayList<Chat>).clear()
@@ -159,6 +187,7 @@ class ChatActivity : AppCompatActivity() {
         })
 
     }
+
 
 
     override fun onSupportNavigateUp(): Boolean {

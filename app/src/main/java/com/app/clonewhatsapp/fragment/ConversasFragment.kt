@@ -17,10 +17,7 @@ import com.app.clonewhatsapp.model.Conversas
 import com.app.clonewhatsapp.model.Usuario
 import com.app.clonewhatsapp.ui.contatos.ContatosActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.coroutines.NonCancellable.children
 
 
@@ -31,6 +28,7 @@ class ConversasFragment : Fragment() {
     private var conversasContatos: ArrayList<Conversas>? = null
     private var recyclerView: RecyclerView? = null
     private var conversasAdapter: ConversasAdapter? = null
+    private var valueEventListenerConversas: ChildEventListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +52,6 @@ class ConversasFragment : Fragment() {
         conversasContatos = ArrayList()
 
 
-        RecuperarConversas()
 
         binding.fabContatos.setOnClickListener {
             val intent = Intent(context, ContatosActivity::class.java)
@@ -68,6 +65,20 @@ class ConversasFragment : Fragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        RecuperarConversas()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val remetenteId = FirebaseAuth.getInstance().uid
+        var conversasRef = FirebaseDatabase.getInstance().getReference("/conversas-usuarios/$remetenteId")
+
+        conversasRef.removeEventListener(valueEventListenerConversas!!)
+
+    }
+
     val ultimaMensagemMap = HashMap<String, Conversas>()
 
     private fun refreshRecyclerViewConversas(){
@@ -78,25 +89,19 @@ class ConversasFragment : Fragment() {
     }
 
     private fun RecuperarConversas(){
-        var intent = Intent()
+//        var intent = Intent()
 //        val destinatarioId = intent.getStringExtra("contatoID")
-
         val remetenteId = FirebaseAuth.getInstance().uid
-
 
         val ref = FirebaseDatabase.getInstance().getReference("/conversas-usuarios/$remetenteId")
 
-        ref!!.addChildEventListener(object : ChildEventListener {
+        valueEventListenerConversas = ref!!.addChildEventListener(object : ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
 
-//                (conversasContatos as ArrayList<Conversas>).clear()
                 var conversas = snapshot.getValue(Conversas::class.java)
 
-//               if (!(conversas!!.remetenteId).equals(remetenteId))
-//                {
-                    ultimaMensagemMap[snapshot.key!!] = conversas!!
-                    refreshRecyclerViewConversas()
-//                }
+                ultimaMensagemMap[snapshot.key!!] = conversas!!
+                refreshRecyclerViewConversas()
 
                 conversasAdapter = ConversasAdapter(context!!,conversasContatos!!)
                 recyclerView!!.adapter = conversasAdapter
@@ -105,20 +110,12 @@ class ConversasFragment : Fragment() {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-//
+
                 var conversas = snapshot.getValue(Conversas::class.java)
 
-//                    if (!((conversas!!.remetenteId) == remetenteId))
-//                if((conversas!!.remetenteId) == remetenteId || (conversas!!.destinaratioId) == destinatarioId)
-//                {
-                    ultimaMensagemMap[snapshot.key!!] = conversas!!
-                    refreshRecyclerViewConversas()
-//
-//                }
+                ultimaMensagemMap[snapshot.key!!] = conversas!!
+                refreshRecyclerViewConversas()
 
-
-                conversasAdapter = ConversasAdapter(context!!,conversasContatos!!)
-                recyclerView!!.adapter = conversasAdapter
 
             }
 

@@ -11,7 +11,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.clonewhatsapp.R
-import com.app.clonewhatsapp.model.Chat
 import com.app.clonewhatsapp.model.Conversas
 import com.app.clonewhatsapp.model.Usuario
 import com.app.clonewhatsapp.ui.chat.ChatActivity
