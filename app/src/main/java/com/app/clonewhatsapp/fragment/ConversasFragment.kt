@@ -2,12 +2,12 @@ package com.app.clonewhatsapp.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.adapter.ChatAdapter
 import com.app.clonewhatsapp.adapter.ContatosAdapter
 import com.app.clonewhatsapp.adapter.ConversasAdapter
@@ -33,7 +33,7 @@ class ConversasFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        setHasOptionsMenu(true)
     }
 
 
@@ -62,6 +62,33 @@ class ConversasFragment : Fragment() {
 
         return binding.root
 
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        requireActivity().menuInflater.inflate(R.menu.menu_principal,menu)
+
+
+        val item = menu!!.findItem(R.id.menuPesquisaPrincipal)
+        val searchView = item.actionView as SearchView
+        searchView.queryHint = "Pesquisar..."
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                //contatosAdapter!!.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                conversasAdapter!!.filter.filter(newText)
+
+
+                return true
+            }
+
+        })
+
+        return super.onCreateOptionsMenu(menu,inflater)
 
     }
 

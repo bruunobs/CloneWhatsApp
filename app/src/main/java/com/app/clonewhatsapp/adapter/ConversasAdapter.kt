@@ -5,10 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.model.Conversas
@@ -23,16 +20,17 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) : RecyclerView.Adapter<ConversasAdapter.ViewHolder>() {
+class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) : RecyclerView.Adapter<ConversasAdapter.ViewHolder>(), Filterable {
 
     private val mContest: Context
     private var conversasList: ArrayList<Conversas>
-
-    var firebaseUser: FirebaseUser? = null
+    private var conversasListFilter: ArrayList<Conversas>
 
     init {
         this.mContest = mContest
         this.conversasList = conversasList
+        this.conversasListFilter = conversasList
+        notifyDataSetChanged()
 
 
     }
@@ -115,6 +113,42 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) :
 
         }
 
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(cs: CharSequence?): FilterResults {
+
+                val filterResult = FilterResults()
+                if(cs == null || cs.length < 0){
+                    filterResult.count = conversasListFilter.size
+                    filterResult.values = conversasListFilter
+                }else{
+
+                    var cs = cs.toString().toLowerCase()
+                    val itemModal = ArrayList<Conversas>()
+
+                    for (item in conversasListFilter)
+                    {
+                        if(item.mensagem!!.toLowerCase().contains(cs.toLowerCase())){
+                            itemModal.add(item)
+                        }
+
+
+                    }
+
+                    filterResult.count = itemModal.size
+                    filterResult.values = itemModal
+                }
+
+                return filterResult
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                conversasList = results!!.values as ArrayList<Conversas>
+                notifyDataSetChanged()
+            }
+        }
     }
 
 

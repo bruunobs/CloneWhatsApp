@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menuPesquisa"
+        android:id="@+id/menuPesquisaPrincipal"
         android:title="@string/pesquisar_menu_principal"
         app:showAsAction="always"
         android:icon="@drawable/ic_pesquisa_branco"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
         />
 
     <item
