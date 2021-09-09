@@ -82,7 +82,6 @@ class ConversasFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 conversasAdapter!!.filter.filter(newText)
 
-
                 return true
             }
 
@@ -91,6 +90,8 @@ class ConversasFragment : Fragment() {
         return super.onCreateOptionsMenu(menu,inflater)
 
     }
+
+
 
     override fun onStart() {
         super.onStart()
@@ -130,7 +131,7 @@ class ConversasFragment : Fragment() {
                 ultimaMensagemMap[snapshot.key!!] = conversas!!
                 refreshRecyclerViewConversas()
 
-                conversasAdapter = ConversasAdapter(context!!,conversasContatos!!)
+                conversasAdapter = ConversasAdapter(context!!,conversasContatos!!,)
                 recyclerView!!.adapter = conversasAdapter
 
 

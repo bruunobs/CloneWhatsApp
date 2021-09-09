@@ -1,13 +1,13 @@
 package com.app.clonewhatsapp.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.app.clonewhatsapp.R
 import com.app.clonewhatsapp.databinding.FragmentStatusBinding
 import com.app.clonewhatsapp.model.Usuario
+import com.app.clonewhatsapp.ui.configuracao.ConfiguracoesActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,6 +36,20 @@ class StatusFragment : Fragment() {
         return binding.root
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+        when(item.itemId){
+
+            R.id.menuConfiguracoes -> {
+                startActivity(Intent(activity, ConfiguracoesActivity::class.java))
+            }
+        }
     }
 
     private fun getData() {

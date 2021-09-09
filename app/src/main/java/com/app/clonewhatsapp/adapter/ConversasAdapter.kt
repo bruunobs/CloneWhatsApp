@@ -19,12 +19,14 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.concurrent.TimeUnit
 
 class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) : RecyclerView.Adapter<ConversasAdapter.ViewHolder>(), Filterable {
 
     private val mContest: Context
     private var conversasList: ArrayList<Conversas>
     private var conversasListFilter: ArrayList<Conversas>
+    private lateinit var listaContatosFilter: List<Usuario>
 
     init {
         this.mContest = mContest
@@ -84,7 +86,8 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) :
 
         })
 
-        holder.itemView.findViewById<TextView>(R.id.ultima_conversa).text = conversas!!.mensagem
+        holder.itemView.findViewById<TextView>(R.id.ultima_conversa).text = conversas.mensagem
+        holder.itemView.findViewById<TextView>(R.id.hora_mensagem_conversa).text = formatToDigitalClock(conversas.tempo!!)
 
 
 
@@ -123,17 +126,21 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) :
                 if(cs == null || cs.length < 0){
                     filterResult.count = conversasListFilter.size
                     filterResult.values = conversasListFilter
+
+
                 }else{
 
                     var cs = cs.toString().toLowerCase()
                     val itemModal = ArrayList<Conversas>()
 
-                    for (item in conversasListFilter)
+                    for (item in conversasListFilter )
                     {
                         if(item.mensagem!!.toLowerCase().contains(cs.toLowerCase())){
                             itemModal.add(item)
                         }
-
+                        if(item.mensagem!!.toLowerCase().contains(cs.toLowerCase())){
+                            itemModal.add(item)
+                        }
 
                     }
 
@@ -151,6 +158,18 @@ class ConversasAdapter(mContest: Context, conversasList: ArrayList<Conversas>) :
         }
     }
 
-
+    fun formatToDigitalClock(miliSeconds: Long): String {
+        val hours = TimeUnit.MILLISECONDS.toHours(miliSeconds).toInt() % 24
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(miliSeconds).toInt() % 60
+//        val seconds = TimeUnit.MILLISECONDS.toSeconds(miliSeconds).toInt() % 60
+        return when {
+            hours > 0 -> String.format("%d:%02d", hours, minutes)
+            minutes > 0 -> String.format("%02d", minutes)
+//            seconds > 0 -> String.format("00:%02d")
+            else -> {
+                "00:00"
+            }
+        }
+    }
 
 }

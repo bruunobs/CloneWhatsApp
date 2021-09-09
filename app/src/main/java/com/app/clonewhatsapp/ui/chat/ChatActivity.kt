@@ -68,7 +68,7 @@ class ChatActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Mensagem esta vazia",Toast.LENGTH_SHORT).show()
                 binding.EditTextChat.setText("")
             }else{
-                sendMessage(firebaseUser!!.uid,contatoId!!,mensagem,System.currentTimeMillis() / 1000)
+                sendMessage(firebaseUser!!.uid,contatoId!!,mensagem,Calendar.getInstance().timeInMillis)
                 binding.EditTextChat.setText("")
 
             }
