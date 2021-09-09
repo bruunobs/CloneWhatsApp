@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import java.util.concurrent.TimeUnit
 
 class ChatAdapter(mContest: Context, chatList: ArrayList<Chat>, isChatCheck: Boolean) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
@@ -56,9 +57,8 @@ class ChatAdapter(mContest: Context, chatList: ArrayList<Chat>, isChatCheck: Boo
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
         val chat: Chat? = chatList[i]
         holder.itemView.findViewById<TextView>(R.id.mensagem_chat).text = chat!!.mensagem
-//        holder.itemView.findViewById<TextView>(R.id.mensagem_chat).text = chat!!.mensagem
-        //holder.itemView.findViewById<TextView>(R.id.nome_contatos).text = chat!!.mensagem
-        //Colocar a hora depois
+        holder.itemView.findViewById<TextView>(R.id.hora_mensagem).text = formatToDigitalClock(chat.tempo!!)
+
     }
 
     override fun getItemCount(): Int {
@@ -91,6 +91,19 @@ class ChatAdapter(mContest: Context, chatList: ArrayList<Chat>, isChatCheck: Boo
         }
     }
 
+    fun formatToDigitalClock(miliSeconds: Long): String {
+        val hours = TimeUnit.MILLISECONDS.toHours(miliSeconds).toInt() % 24
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(miliSeconds).toInt() % 60
+//        val seconds = TimeUnit.MILLISECONDS.toSeconds(miliSeconds).toInt() % 60
+        return when {
+            hours > 0 -> String.format("%d:%02d", hours, minutes)
+            minutes > 0 -> String.format("%02d", minutes)
+//            seconds > 0 -> String.format("00:%02d")
+            else -> {
+                "00:00"
+            }
+        }
+    }
 
 
 }

@@ -93,7 +93,7 @@
     <string name="chat_foto">Foto do perfil da pessoa</string>
     <string name="nome_pessoa_chat">Nome</string>
     <string name="hint_chat">Digite uma mensagem..</string>
-    <string name="hora_mensagem">15:00</string>
+    <string name="hora_mensagem"> </string>
     <string name="mensagem_esquerda"> </string>
     <string name="ultima_conversa"> </string>
 
